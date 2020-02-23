@@ -3,8 +3,11 @@ using System;
 
 public class Main : Node2D
 {
+    [Export]
     private Timer ennemiTimer;
+
     private Timer scoreTimer;
+
     private PackedScene ennemiScene;
 
     private PathFollow2D path;
@@ -18,26 +21,40 @@ public class Main : Node2D
     private Position2D startPosition;
 
     private static Random ennemiPosRandom;
+
     private static Random ennemiAngleRandom;
 
     private AudioStreamPlayer music;
 
     private AudioStreamPlayer deathSound;
 
-    private GDScript NetworkNode;
+    private GDScript network = (GDScript) GD.Load("res://network.gd");
 
-    private GDScript GamestateNode;
+    private GDScript gamestate = (GDScript) GD.Load("res://gamestate.gd");
 
-    private Label ListeJoueur;
+    private GDScript menuMultiplayer = (GDScript) GD.Load("res://MenuMultiplayer.gd");
+
+    private Godot.Object myNetwork;
+
+    private Godot.Object myMenuMultiplayer;
+
+    private Godot.Object myGamestate;
 
     private VBoxContainer boxList;
+    
+    private LineEdit Serveur; 
+
+    private SpinBox maxJoueur;
+
+    private LineEdit rejoindre; 
+
+    private Label nomJoueur;
 
     public override void _Ready()
     {
         ennemiTimer = (Timer) GetNode("EnnemiTimer");
         ennemiTimer.Connect("timeout", this, nameof(OnEnnemiSpawn));
         
-
         scoreTimer = (Timer) GetNode("ScoreTimer");
         scoreTimer.Connect("timeout", this, nameof(OnScoreChange));
         ennemiScene = (PackedScene) GD.Load("Ennemi.tscn");  
@@ -57,22 +74,21 @@ public class Main : Node2D
         music = (AudioStreamPlayer) GetNode("Music");
         deathSound = (AudioStreamPlayer) GetNode("DeathSound");
         
-
         ennemiPosRandom = new Random(); 
         ennemiAngleRandom = new Random();
 
-        // Connexion du signal de modification_liste_joueurs avec la fonction changement_liste_joueur
-        NetworkNode = (GDScript) GD.Load("res://network.gd");
-        NetworkNode.Connect("modification_liste_joueurs",this,"ChangementListeJoueur");
+        // Connecter le signal réseau avec le changement de la liste des joueurs
+        myNetwork = (Godot.Object) network.New();
+        myNetwork.Connect("modification_liste_joueurs", this, nameof(listeJoueurModification));
 
-        // Mise à jour du LabelJoueurLocal pour afficher le joueur local
-        ListeJoueur = (Label) GetNode("LabelJoueurLocal");
-        GamestateNode = (GDScript) GD.Load("res://gamestate.gd");
-        ListeJoueur.Text = (String) GamestateNode.Get("infos_joueur[name]");
+        myGamestate = (Godot.Object) gamestate.New();
 
+        // Mettre à jour le label pour afficher le joueur local
+        nomJoueur = (Label) GetNode("HUD/PanelListeJoueurs/LabelJoueurLocal");
+        nomJoueur.Text = (String) myGamestate.Get("infos_joueurs[nom]");
     }
 
-    void OnEnnemiSpawn()
+    public void OnEnnemiSpawn()
     {
         path.SetOffset(ennemiPosRandom.Next());
 
@@ -89,7 +105,7 @@ public class Main : Node2D
         AddChild(ennemi);
     }
 
-    void Gameover()
+    public void Gameover()
     {
         music.Stop();
         deathSound.Play();
@@ -100,7 +116,7 @@ public class Main : Node2D
         menu.Gameover();
     }
 
-    void cleanEnnemies()
+    public void cleanEnnemies()
     {
         foreach(Node child in GetChildren())
         {
@@ -111,7 +127,7 @@ public class Main : Node2D
         }
     }
 
-    void OnGameStart()
+    public void OnGameStart()
     {
         music.Play();
         score = 0;
@@ -122,36 +138,65 @@ public class Main : Node2D
         ennemiTimer.Start();
     }
 
-    void OnScoreChange()
+    public void OnScoreChange()
     {
         score += 1;
         menu.UpdateScore(score);
     }
 
-    void ChangementListeJoueur()
+    public void listeJoueurModification()
     {
-        boxList = (VBoxContainer) GetNode("BoxList")
-        // Supprime tous les enfants de la boxList
-        foreach(Node child in GetChildren())
+        boxList = (VBoxContainer) GetNode("HUD/PanelListeJoueurs/Boxlist");
+
+        // Supprimer tous les enfants de la boxList
+        foreach(Node c in boxList.GetChildren())
         {
-            if (child is VBoxContainer)
-            {
-                child.QueueFree();
-            }
+            c.QueueFree();
         }
 
-        // Créé une nouvelle entrée dans la boxList
-        foreach(GDScript child in GetChildren())
+        // Ajouter une nouvelle entrée pour chaque joueur dans la boxList
+        foreach(Godot.Collections.Dictionary p in (Godot.Collections.Dictionary) myNetwork.Get("players"))
         {
-            if (child == NetworkNode)
+            if(p != myGamestate.Get("infos_joueur[net_id]"))
             {
-                if (child != GamestateNode.Get("infos_joueur[net_id]"))
-                {
-                    private Label lbNouveauJoueur = new Label();
-                    
-                    lbNouveauJoueur.Text = NetworkNode.Get("chat");
-                }
+                var labelJoueur = new Label();
+                labelJoueur.Text = (String) myNetwork.Get("players[p][nom]");
+                boxList.AddChild(labelJoueur);
             }
         }
+    }
+
+    public void _on_btCreer_pressed()
+    {
+        // maj info joueur local
+        myMenuMultiplayer = (Godot.Object) menuMultiplayer.New();
+        myMenuMultiplayer.Call("set_player_info");
+        Serveur = (LineEdit) GetNode("res://MenuMultiplayer.tscn/CanvasLayer/PanelHost/txtNomServeur");
+
+        // Récupérer infos GUI pour le mettre dans le dico network
+
+        if(!Serveur.Text.Empty())
+        {
+            myNetwork.Set("info_serveur[nom]",Serveur.Text);
+        }
+
+        maxJoueur = (SpinBox) GetNode("res://MenuMultiplayer.tscn/CanvasLayer/PanelHost/txtJoueursMax");
+        myNetwork.Set("info_serveur[joueurs_max]", (int) maxJoueur.Value);
+        Serveur = (LineEdit) GetNode("res://MenuMultiplayer.tscn/CanvasLayer/PanelHost/txtPortServeur");
+        myNetwork.Set("port_utilise", int.Parse(Serveur.Text));
+
+        myNetwork.Call("creer_server");
+    }
+
+    public void _on_btRejoindre_pressed()
+    {
+        // Ajouter les infos du joueur local
+        myMenuMultiplayer.Call("set_player_info");
+
+        rejoindre = (LineEdit) GetNode("res://MenuMultiplayer.tscn/CanvasLayer/PanelRejoindre/RejoindrePort");
+        var port = int.Parse(rejoindre.Text);
+        rejoindre = (LineEdit) GetNode("res://MenuMultiplayer.tscn/CanvasLayer/PanelRejoindre/RejoindreIp");
+        var ip = rejoindre.Text;
+        myNetwork.Call("rejoindre_serveur", ip, port);
     }
 }

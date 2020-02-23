@@ -5,7 +5,6 @@ func _ready():
 	network.connect("rejoint_succes",self,"_pret_a_jouer")
 	network.connect("rejoint_echec",self,"_echec_rejoindre")
 
-
 func _on_btCreer_pressed():
 	# Récupérer les valeurs du GUI et les mettre dans le dico
 	if(! $PanelHost/txtNomServeur.text.empty()):
@@ -22,8 +21,12 @@ func _pret_a_jouer():
 func _echec_rejoindre():
 	print("Echec connexion serveur")
 
-
 func _on_btRejoindre_pressed():
 	var port = int($PanelRejoindre/RejoindrePort.text)
 	var ip = $PanelRejoindre/RejoindreIp.text
 	network.rejoindre_serveur(ip, port)
+	
+func set_player_info():
+	if (!$PanelPlayer/txtPlayerName.text.empty()):
+		gamestate.player_info.name = $PanelPlayer/txtPlayerName.text
+	gamestate.player_info.char_color = $PanelPlayer/btColor.color

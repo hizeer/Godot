@@ -3,10 +3,10 @@ using System;
 
 public class Menu : CanvasLayer
 {
+    [Export]
     private Label scoreLabel;
     private Label messageLabel;
     private Button startButton;
-
     private Timer restartTimer;
     
     public override void _Ready()

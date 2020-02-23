@@ -29,10 +29,14 @@ margin_right = 40.0
 margin_bottom = 14.0
 text = "Nom du Joueur Local
 "
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Boxlist" type="VBoxContainer" parent="HUD/PanelListeJoueurs"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 20.0
+margin_right = 136.0
+margin_bottom = 104.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
