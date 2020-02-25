@@ -17,16 +17,20 @@ script = ExtResource( 2 )
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="PanelListeJoueurs" type="Panel" parent="HUD"]
+modulate = Color( 0, 0, 0, 1 )
 self_modulate = Color( 0, 0, 0, 0 )
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 137.0
+margin_bottom = 124.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LabelJoueurLocal" type="Label" parent="HUD/PanelListeJoueurs"]
-margin_right = 40.0
-margin_bottom = 14.0
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 137.0
+margin_bottom = 36.0
 text = "Nom du Joueur Local
 "
 __meta__ = {
@@ -34,8 +38,9 @@ __meta__ = {
 }
 
 [node name="Boxlist" type="VBoxContainer" parent="HUD/PanelListeJoueurs"]
+margin_left = 5.0
 margin_top = 20.0
-margin_right = 136.0
+margin_right = 141.0
 margin_bottom = 104.0
 __meta__ = {
 "_edit_use_anchors_": false

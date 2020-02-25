@@ -5,14 +5,12 @@ public class Joueur : Area2D
 {
   [Export]
   private int SPEED = 400;
-
   private AnimatedSprite animatedSprite;
   private CollisionShape2D collisionShape2D;  
-
   private Vector2 velocity;
   private Vector2 screenSize;
-
   private Particles2D particles2D;
+
 	public override void _Ready()
 	{
     screenSize = GetViewportRect().Size;
@@ -22,6 +20,7 @@ public class Joueur : Area2D
     Connect("body_entered", this, nameof(OnBodyEntered));
     AddUserSignal("hit");
   }
+
   public override void _Process(float delta)
   {
     velocity = new Vector2();
