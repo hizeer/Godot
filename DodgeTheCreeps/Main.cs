@@ -28,10 +28,6 @@ public class Main : Node2D
 
     private AudioStreamPlayer deathSound;
 
-    private GDScript network = (GDScript) GD.Load("res://network.gd");
-
-    private GDScript gamestate = (GDScript) GD.Load("res://gamestate.gd");
-
     private GDScript menuMultiplayer = (GDScript) GD.Load("res://MenuMultiplayer.gd");
 
     private Godot.Object myNetwork;
@@ -78,10 +74,11 @@ public class Main : Node2D
         ennemiAngleRandom = new Random();
 
         // Connecter le signal réseau avec le changement de la liste des joueurs
-        myNetwork = (Godot.Object) network.New();
-        myNetwork.Connect("modification_liste_joueurs", this, nameof(listeJoueurModification));
 
-        myGamestate = (Godot.Object) gamestate.New();
+        myGamestate = (Godot.Object) GetTree().GetRoot().GetChild(0);
+
+        myNetwork = (Godot.Object) GetTree().GetRoot().GetChild(1);
+        myNetwork.Connect("modification_liste_joueurs", this, nameof(listeJoueurModification));
 
         // Mettre à jour le label pour afficher le joueur local
         nomJoueur = (Label) GetNode("HUD/PanelListeJoueurs/LabelJoueurLocal");
@@ -169,6 +166,12 @@ public class Main : Node2D
     public void _on_btCreer_pressed()
     {
         // maj info joueur local
+        foreach(Node n in GetTree().GetRoot().GetChildren())
+        {
+            GD.Print(n);
+            GD.Print("\n");
+        }
+        
         myMenuMultiplayer = (Godot.Object) menuMultiplayer.New();
         myMenuMultiplayer.Call("set_player_info");
         Serveur = (LineEdit) GetNode("res://MenuMultiplayer.tscn/CanvasLayer/PanelHost/txtNomServeur");

@@ -16,3 +16,8 @@ D:\Documents\GitHub\Godot\DodgeTheCreeps\.mono\temp\obj\Tools\Dodge The Creeps.c
 D:\Documents\GitHub\Godot\DodgeTheCreeps\.mono\temp\obj\Tools\Dodge The Creeps.csproj.CoreCompileInputs.cache
 D:\Documents\GitHub\Godot\DodgeTheCreeps\.mono\temp\obj\Tools\Dodge The Creeps.dll
 D:\Documents\GitHub\Godot\DodgeTheCreeps\.mono\temp\obj\Tools\Dodge The Creeps.pdb
+C:\Users\Téo YERMIA\Documents\GitHub\Godot\DodgeTheCreeps\.mono\temp\bin\Tools\Dodge The Creeps.dll
+C:\Users\Téo YERMIA\Documents\GitHub\Godot\DodgeTheCreeps\.mono\temp\bin\Tools\Dodge The Creeps.pdb
+C:\Users\Téo YERMIA\Documents\GitHub\Godot\DodgeTheCreeps\.mono\temp\obj\Tools\Dodge The Creeps.csprojAssemblyReference.cache
+C:\Users\Téo YERMIA\Documents\GitHub\Godot\DodgeTheCreeps\.mono\temp\obj\Tools\Dodge The Creeps.dll
+C:\Users\Téo YERMIA\Documents\GitHub\Godot\DodgeTheCreeps\.mono\temp\obj\Tools\Dodge The Creeps.pdb
