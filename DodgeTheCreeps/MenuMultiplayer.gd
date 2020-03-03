@@ -8,7 +8,8 @@ func _ready():
 func _on_btCreer_pressed():	
 	# Maj données joueurs
 	set_player_info()
-	
+	network.set_meta("network","name")
+	gamestate.set_meta("gamestate","name")
 	# Récupérer les valeurs du GUI et les mettre dans le dico
 	if(! $PanelHost/txtNomServeur.text.empty()):
 		network.info_serveur.nom = $PanelHost/NomServeur.text

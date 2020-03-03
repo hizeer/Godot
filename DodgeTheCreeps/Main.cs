@@ -52,7 +52,11 @@ public class Main : Node2D
 
         // Connecter le signal réseau avec le changement de la liste des joueurs
 
-        //foreach (Node p in GetTree().GetRoot().GetChildren()) {GD.Print(p);}
+        foreach (Node p in GetTree().GetRoot().GetChildren()) 
+        {
+            GD.Print(p);
+            GD.Print(p.GetMetaList());
+        }
 
         myGamestate = (Godot.Object) GetTree().GetRoot().GetChild(0);
 

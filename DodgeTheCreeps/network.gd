@@ -13,6 +13,8 @@ signal rejoint_succes # Quand le client a rejoint le serveur
 signal rejoint_echec # Quand le client n'a pas rejoint le serveur
 signal modification_liste_joueurs # Quand la liste des joueurs a changé
 
+
+
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_joueur_connecte")
 	get_tree().connect("network_peer_disconnected", self, "_joueur_deconnecte")
