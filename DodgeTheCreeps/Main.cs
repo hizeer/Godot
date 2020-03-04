@@ -54,13 +54,19 @@ public class Main : Node2D
 
         foreach (Node p in GetTree().GetRoot().GetChildren()) 
         {
-            GD.Print(p);
             GD.Print(p.GetMetaList());
+
+            if(p.HasMeta("network"))
+            {
+                myNetwork = p;
+            }
+
+            else if(p.HasMeta("gamestate"))
+            {
+                myGamestate = p;
+            }
         }
-
-        myGamestate = (Godot.Object) GetTree().GetRoot().GetChild(0);
-
-        myNetwork = (Godot.Object) GetTree().GetRoot().GetChild(1);
+    
         myNetwork.Connect("modification_liste_joueurs", this, nameof(listeJoueurModification));
 
         // Mettre à jour le label pour afficher le joueur local
@@ -147,17 +153,18 @@ public class Main : Node2D
 
         // Ajouter une nouvelle entrée pour chaque joueur dans la boxList
         var dicoJoueur = (Godot.Collections.Dictionary) myNetwork.Get("players");
-        GD.Print(dicoJoueur);
-        /*foreach(Godot.Collections.Dictionary p in dicoJoueur)
-        {
-            var dicoInfo = (Godot.Collections.Dictionary) myGamestate.Get("infos_joueur");
-            if(p != dicoInfo["net_id"])
+
+        var dicoInfo = (Godot.Collections.Dictionary) myGamestate.Get("infos_joueur");
+
+        foreach(System.Int32 p in dicoJoueur.Keys)
+        {    
+            if(p != (System.Int32) dicoInfo["net_id"])
             {
                 var labelJoueur = new Label();
                 var Joueur = (Godot.Collections.Dictionary) dicoJoueur[p];
                 labelJoueur.Text = (String) Joueur["nom"];
                 boxList.AddChild(labelJoueur);
             }
-        }*/
+        }
     }
 }

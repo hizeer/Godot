@@ -8,4 +8,4 @@ var infos_joueur = {
 }
 
 func _ready():
-	pass 
+	self.set_meta("gamestate",name)
