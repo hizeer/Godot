@@ -28,6 +28,7 @@ func _joueur_connecte(id):
 # Tout le monde est averti quand quelqu'un est déconecté du serveur
 func _joueur_deconnecte(id):
 	players.erase(id)
+	emit_signal("modification_liste_joueurs")
 	
 # Paire réussi à se connecter au serveur	
 func _connexion_serveur_reussi():
@@ -60,7 +61,7 @@ func creer_server():
 		return
 		
 	# Assignement dans l'arbre
-	get_tree().set_network_peer(net);
+	get_tree().set_network_peer(net)
 	
 	# Envoi un signal indiquant serveur créé
 	emit_signal("serveur_cree")

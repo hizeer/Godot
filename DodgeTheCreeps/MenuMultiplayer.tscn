@@ -34,9 +34,9 @@ text = "Port"
 
 [node name="txtNomServeur" type="LineEdit" parent="PanelHost"]
 margin_left = 7.3241
-margin_top = 56.0
+margin_top = 57.0
 margin_right = 263.324
-margin_bottom = 80.0
+margin_bottom = 81.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -116,10 +116,10 @@ __meta__ = {
 }
 
 [node name="RejoindreIp" type="LineEdit" parent="PanelRejoindre"]
-margin_left = 3.0
-margin_top = 76.0
-margin_right = 89.0
-margin_bottom = 100.0
+margin_left = 6.8689
+margin_top = 78.3213
+margin_right = 92.8689
+margin_bottom = 102.321
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -135,10 +135,10 @@ __meta__ = {
 }
 
 [node name="RejoindrePort" type="LineEdit" parent="PanelRejoindre"]
-margin_left = 117.158
-margin_top = 76.7368
-margin_right = 175.158
-margin_bottom = 100.737
+margin_left = 116.384
+margin_top = 75.1893
+margin_right = 174.384
+margin_bottom = 99.1895
 __meta__ = {
 "_edit_use_anchors_": false
 }
