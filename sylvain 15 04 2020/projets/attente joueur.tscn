@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+func _ready():
+	var ip = infosGlobales.hoteip
+	network.connect(\"modification_liste_joueurs\", self ,\"listeModificationJoueur\")
+	print(\"ip de l'hote : \" + ip)
+
+func listeModificationJoueur():
+	for c in $PanelJoueur/boxList.get_children():
+		c.queue_free()
+	
+	for p in network.players:
+		if (p != gamestate.infos_joueur.net_id):
+			var nlabel = Label.new()
+			nlabel.text = network.players[p].n
+			$PanelJoueur/boxList.add_child(nlabel)
+"
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 401.263
+margin_top = 265.737
+margin_right = 573.263
+margin_bottom = 296.737
+text = "En attente de joueurs
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name=" PanelJoueur" type="Panel" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 0 )
+margin_right = 179.0
+margin_bottom = 159.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelJoueurLocal" type="Label" parent=" PanelJoueur"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_right = 89.0
+margin_bottom = 37.0
+text = "Joueur Local"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Boxlist" type="VBoxContainer" parent=" PanelJoueur"]
+margin_left = 1.94736
+margin_top = 32.6842
+margin_right = 120.947
+margin_bottom = 129.684
