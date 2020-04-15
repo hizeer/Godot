@@ -25,6 +25,9 @@ margin_left = 25.0
 margin_top = 425.0
 margin_right = 325.0
 margin_bottom = 465.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Button" type="Button" parent="Panel"]
 margin_left = 350.0
@@ -66,10 +69,10 @@ __meta__ = {
 }
 
 [node name="teteBox2" type="Panel" parent="."]
-margin_left = 101.108
-margin_top = 498.615
-margin_right = 551.108
-margin_bottom = 548.615
+margin_left = 100.055
+margin_top = 527.036
+margin_right = 550.055
+margin_bottom = 577.036
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false

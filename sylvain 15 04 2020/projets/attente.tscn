@@ -1,29 +1,34 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://attente.gd" type="Script" id=1]
+[ext_resource path="res://Chatroom.tscn" type="PackedScene" id=2]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 2.43213
+margin_top = -2.54016
+margin_right = 2.43213
+margin_bottom = -2.54016
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button" type="Button" parent="."]
-margin_left = 398.844
-margin_top = 461.596
-margin_right = 587.844
-margin_bottom = 524.596
+margin_left = 591.642
+margin_top = 505.917
+margin_right = 780.642
+margin_bottom = 568.917
 text = "Retour"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = 434.0
+margin_left = 600.0
 margin_top = 214.0
-margin_right = 571.0
+margin_right = 737.0
 margin_bottom = 245.0
 text = "En attente de joueurs
 "
@@ -34,6 +39,8 @@ __meta__ = {
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="HTTPRequest2" type="HTTPRequest" parent="."]
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 2 )]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="request_completed" from="HTTPRequest2" to="." method="_on_HTTPRequest2_request_completed"]
