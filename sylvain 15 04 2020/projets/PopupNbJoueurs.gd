@@ -16,6 +16,5 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
-func _on_Button_pressed():
+func _on_btNbJoueurs_pressed():
 	popup()

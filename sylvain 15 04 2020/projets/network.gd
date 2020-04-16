@@ -1,93 +1,86 @@
 extends Node
 
-var info_serveur = {
-	nom = "serveur", # Nom du serveur
-	joueurs_max = 0, # Nombre de joeuurs max autorisé
-	port_utilise = 0  # Port écouté
+var server_infos = {
+	name = "server", 
+	max_players = 0,
+	port = 0 
 }
 
 var players = {}
 
-signal serveur_cree # Quand le serveur est créé
-signal rejoint_succes # Quand le client a rejoint le serveur
-signal rejoint_echec # Quand le client n'a pas rejoint le serveur
-signal modification_liste_joueurs # Quand la liste des joueurs a changé
+signal server_created 
+signal join_success 
+signal join_failed 
+signal _on_players_list_modifs
 
 func _ready():
-	get_tree().connect("network_peer_connected", self, "_joueur_connecte")
-	get_tree().connect("network_peer_disconnected", self, "_joueur_deconnecte")
-	get_tree().connect("connected_to_server", self, "_connexion_serveur_reussi")
-	get_tree().connect("connection_failed", self, "_connexion_serveur_echoue")
-	get_tree().connect("server_disconnected", self, "_deconnexion_serveur")
+	get_tree().connect("network_peer_connected", self, "_player_connected")
+	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
+	get_tree().connect("connected_to_server", self, "_connection_server_success")
+	get_tree().connect("connection_failed", self, "_connection_server_failed")
+	get_tree().connect("server_disconnected", self, "_deconnection_server")
 	
-# Tout le monde est averti de l'arrivée d'un nouveau client sur le serveur
-func _joueur_connecte(id):
+func _player_connected(id):
 		pass
 	
-# Tout le monde est averti quand quelqu'un est déconecté du serveur
-func _joueur_deconnecte(id):
+func _player_disconnected(id):
 	players.erase(id)
-	emit_signal("modification_liste_joueurs")
+	emit_signal("_on_players_list_modifs")
 	
-# Paire réussi à se connecter au serveur	
-func _connexion_serveur_reussi():
-	emit_signal("rejoint_succes")
+func _connection_server_success():
+	emit_signal("join_success")
 	
-	# Mise à jour les informations du joueur (id unique)
-	gamestate.infos_joueur.net_id = get_tree().get_network_unique_id()
+	gamestate.player_infos.net_id = get_tree().get_network_unique_id()
 	
-	# Demande au serveur d'enregistrer le nouveau joueur en le donnant aux autres joueurs
-	rpc_id(1, "enregistrer_joueur",gamestate.infos_joueur)
+	# Ask the server to register the new player in each clients players list plus himself
+	rpc_id(1, "register_players",gamestate.player_infos)
 	
-	# S'enregistre lui-même dans sa liste
-	enregistrer_joueur(gamestate.infos_joueur)
+	# The new player registers himself in his players list
+	register_players(gamestate.player_infos)
 	
-# Paire n'a pas réussi à se connecter au serveur
-func _connexion_serveur_echoue():
-	emit_signal("rejoint_echec")
+func _connection_server_failed():
+	emit_signal("join_failed")
 	
-# Paire notifiée quand déconnectée du serveur
-func _deconnexion_serveur():
+func _deconnection_server():
 	pass 
 	
-func creer_server():
-	# Initialisation du serveur
+func create_server():
 	var net = NetworkedMultiplayerENet.new()
 	
-	# Essai connexion au serveur
-	if (net.create_server(info_serveur.port_utilise, info_serveur.joueurs_max)):
+	if (net.create_server(server_infos.port, server_infos.max_players) != OK):
 		print ("Impossible de créer le serveur")
 		return
 		
-	# Assignement dans l'arbre
+	# Tree assignement
 	get_tree().set_network_peer(net)
 	
-	# Envoi un signal indiquant serveur créé
-	emit_signal("serveur_cree")
+	emit_signal("server_created")
 	
-	# Enregistrer le serveur du joueur sur la liste des joueurs en local
-	enregistrer_joueur(gamestate.infos_joueur)
+	# Register server on his players list 
+	register_players(gamestate.player_infos)
 
-func rejoindre_serveur(ip, port):
+func join_server(ip, port):
 	var net = NetworkedMultiplayerENet.new()
 	
 	if (net.create_client(ip, port) != OK):
 		print("Le client n'a pas été créé")
-		emit_signal("rejoint_echec")
+		emit_signal("join_failed")
 		return
 	
 	get_tree().set_network_peer(net)
 
-remote func enregistrer_joueur(pinfo):
+remote func register_players(pinfo):
 	if (get_tree().is_network_server()):
-		# On est sur le serveur, donc on distribue la liste d'information des joueurs grâce aux joueurs connectés
+		
+		# On the server, we share players information list thanks to connected players
 		for id in players:
-			# On envoie les infos des joueurs connectés au nouveau joueur
-			rpc_id(pinfo.net_id,"enregistrer_joueur",players[id])
-			# On envoie intérativement les infos du nouveau joueur aux joueurs connectés (sauf serveur, car pas de remote func sur le local)
+			# Send connected players infos to the new player  
+			rpc_id(pinfo.net_id,"register_players",players[id])
+		
+			# Then send new players infos to connected players (except server, because of remote function)
 			if(id != 1):
-				rpc_id(id, "enregistrer_joueur",pinfo)
+				rpc_id(id, "register_players",pinfo)
 				
-	print("Joueur enregistré ", pinfo.nom, " (", pinfo.net_id, ") à la liste des joueur")
-	players[pinfo.net_id] = pinfo # Création d'une entrée dans le dico
-	emit_signal("modification_liste_joueurs") # Notification de la modificationde la liste 	
+	print("Joueur enregistré ", pinfo.name, " (", pinfo.net_id, ") à la liste des joueurs")
+	players[pinfo.net_id] = pinfo
+	emit_signal("_on_players_list_modifs")

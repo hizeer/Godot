@@ -7,14 +7,11 @@ var bdsize
 func _ready():
 	pass # Replace with function body.
 
-
-func _on_PopupMenu2_id_pressed(id):
+func _on_PopupTaillePlateau_pressed(id):
 	bdsize = id
-
-
-func _on_PopupMenu_id_pressed(id):
+	
+func _on_PopupNbJoueurs_pressed(id):
 	nbj = id
-
 
 func _on_Button3_pressed():
 	var upnp = UPNP.new()
@@ -30,7 +27,7 @@ func _on_Button3_pressed():
 	$HTTPRequest.request("http://www.achline.fr:58080/",headers)
 
 
-func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
+func _on_HTTPRequest_request_completed( result, response_code, headers, body):
 	infosGlobales.isServer = true
 	infosGlobales.selectedGame = body.get_string_from_utf8()
 	print(body.get_string_from_utf8())
@@ -48,4 +45,3 @@ func findPort(var upnp, var pas, var pmax):
 			return (i)
 		i+=pas
 	return(findPort(upnp, int(pas/2),pmax))
-

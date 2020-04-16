@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://PopupMenu.gd" type="Script" id=1]
-[ext_resource path="res://PopupMenu2.gd" type="Script" id=2]
+[ext_resource path="res://PopupNbJoueurs.gd" type="Script" id=1]
+[ext_resource path="res://PopupTaillePlateau.gd" type="Script" id=2]
 [ext_resource path="res://creer.gd" type="Script" id=3]
 
 [node name="Control" type="Control"]
@@ -16,7 +16,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="."]
+[node name="btNbJoueurs" type="Button" parent="."]
 anchor_left = 0.351
 anchor_top = 0.152
 anchor_right = 0.53
@@ -30,7 +30,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button2" type="Button" parent="."]
+[node name="btTaillePlateau" type="Button" parent="."]
 anchor_left = 0.07
 anchor_top = 0.167
 anchor_right = 0.07
@@ -41,7 +41,7 @@ margin_right = 481.421
 margin_bottom = 85.024
 text = "Taille du plateau"
 
-[node name="PopupMenu" type="PopupMenu" parent="."]
+[node name="PopupNbJoueurs" type="PopupMenu" parent="."]
 anchor_left = 1.144
 anchor_right = 2.011
 anchor_bottom = 1.667
@@ -55,7 +55,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PopupMenu2" type="PopupMenu" parent="."]
+[node name="PopupTaillePlateau" type="PopupMenu" parent="."]
 anchor_left = 1.144
 anchor_right = 2.011
 anchor_bottom = 1.667
@@ -69,7 +69,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button3" type="Button" parent="."]
+[node name="btCreerPartie" type="Button" parent="."]
 margin_left = 319.885
 margin_top = 412.16
 margin_right = 587.885
@@ -81,7 +81,7 @@ __meta__ = {
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
-[node name="Button4" type="Button" parent="."]
+[node name="btRetour" type="Button" parent="."]
 margin_left = 828.0
 margin_top = 526.0
 margin_right = 1004.0
@@ -132,10 +132,10 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 215.0
 margin_bottom = 49.0
-[connection signal="pressed" from="Button" to="PopupMenu" method="_on_Button_pressed"]
-[connection signal="pressed" from="Button2" to="PopupMenu2" method="_on_Button2_pressed"]
-[connection signal="id_pressed" from="PopupMenu" to="." method="_on_PopupMenu_id_pressed"]
-[connection signal="id_pressed" from="PopupMenu2" to="." method="_on_PopupMenu2_id_pressed"]
-[connection signal="pressed" from="Button3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="btNbJoueurs" to="PopupNbJoueurs" method="_on_btNbJoueurs_pressed"]
+[connection signal="pressed" from="btTaillePlateau" to="PopupTaillePlateau" method="_on_btTaillePlateau_pressed"]
+[connection signal="id_pressed" from="PopupNbJoueurs" to="." method="_on_PopupNbJoueurs_pressed"]
+[connection signal="id_pressed" from="PopupTaillePlateau" to="." method="_on_PopupTaillePlateau_pressed"]
+[connection signal="pressed" from="btCreerPartie" to="." method="_on_Button3_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
-[connection signal="pressed" from="Button4" to="." method="_on_Button4_pressed"]
+[connection signal="pressed" from="btRetour" to="." method="_on_Button4_pressed"]

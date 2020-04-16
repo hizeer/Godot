@@ -1,35 +1,36 @@
 extends Control
 
-var nextServrRq = OS.get_unix_time() + 20;
-var serverCreated = false;
-var pret = true;
+var nextServerReq = OS.get_unix_time() + 20
+var serverCreated = false
+var ready = true
 var upnp = UPNP.new()
 
 func _ready():
-	var isServer = infosGlobales.isServer;
+	var isServer = infosGlobales.isServer
 	
 	print("port : "+str(infosGlobales.serverPort))
 	print(infosGlobales.hoteip)
 	
 	if(!isServer):
-		print("connection au serveur")
-		rejoindre_serveur()
+		print("connexion au serveur")
+		join_server()
 		
 	if(isServer):
 		upnp.discover()
 		upnp.add_port_mapping(infosGlobales.serverPort)
-		creer_serveur();
+		create_server();
 		
 #func _process(delta):	
 #	if(network.players.size() == InfosGlobales.infos_serveur.joueurs_max):
 	# get_tree().change_scence("res://*.tscn")
 
-func _on_Button_pressed():
+func _on_btRetour_pressed():
 	var headers = ["type: quit","id: "+infosGlobales.selectedGame]
 	$HTTPRequest.request("http://www.achline.fr:58080/",headers)
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	get_tree().set_network_peer(null)
+	
 	if(infosGlobales.isServer):
 		upnp.delete_port_mapping(infosGlobales.serverPort)
 		get_tree().change_scene("res://creer.tscn")
@@ -39,7 +40,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 
 func _on_HTTPRequest2_request_completed(result, response_code, headers, body):
 	var res = body.get_string_from_utf8()
-	print("reception de la requette")
+	print("réception de la requête")
 	
 	if(res != ""):
 		infosGlobales.ips.clear()
@@ -48,40 +49,38 @@ func _on_HTTPRequest2_request_completed(result, response_code, headers, body):
 			infosGlobales.ips.push_back(i)
 		print(infosGlobales.ips)
 		serverCreated = true
-		creer_serveur()
+		create_server()
+		
 	else:
-		print("partie pas prète")
-		nextServrRq = OS.get_unix_time() + 20;
-		pret = true
+		print("partie pas prête")
+		nextServerReq = OS.get_unix_time() + 20;
+		ready = true
 
 
 ################## rejoindre_serveur
-func rejoindre_serveur():
-	network.connect("rejoint_echec",self,"_echec_rejoindre")
+func join_server():
+	network.connect("join_failed",self,"_join_failed")
+	
 	# Maj données joueurs
-	set_player_info()
+	set_player_infos()
 	
 	var port = infosGlobales.serverPort
 	var ip = infosGlobales.hoteip
-	network.rejoindre_serveur(ip, port)
+	network.join_server(ip, port)
 
-func _echec_rejoindre():
+func _join_failed():
 	print("Echec connexion serveur")
 	
-func set_player_info():
-	#if (!$PanelJoueur/txtNomJoueur.text.empty()):
-	gamestate.infos_joueur.nom = infosGlobales.nomJoueur
+func set_player_infos():
+	gamestate.player_infos.name = infosGlobales.nomJoueur
 	
 ################## creer_serveur
+func create_server():	
 
-func creer_serveur():	
-	# Maj données joueurs
-	set_player_info()
-	# Récupérer les valeurs du GUI et les mettre dans le dico
-	#if(! $PanelHost/txtNomServeur.text.empty()):
-	network.info_serveur.nom = infosGlobales.nomPartie
-	network.info_serveur.joueurs_max = infosGlobales.infosPartie["maxPlayers"]
-	network.info_serveur.port_utilise = infosGlobales.serverPort
+	set_player_infos()
+
+	network.server_infos.name = infosGlobales.nomPartie
+	network.server_infos.max_players = infosGlobales.infosPartie["maxPlayers"]
+	network.server_infos.port = infosGlobales.serverPort
 	
-	# Créer le serveur 
-	network.creer_server()
+	network.create_server()

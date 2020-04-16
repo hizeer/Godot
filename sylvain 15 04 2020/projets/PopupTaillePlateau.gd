@@ -16,6 +16,5 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
-func _on_Button2_pressed():
+func _on_btTaillePlateau_pressed():
 	popup()
