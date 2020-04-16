@@ -18,8 +18,8 @@ func _ready():
 func _on_Button_pressed():
 	envoyer()	
 	
-func _on_Button_pressed_perso(edit2,lab2,id):
-	send_private_message(edit2,lab2,id)
+func _on_Button_pressed_perso(panel,edit2,lab2,id,notif):
+	send_private_message(panel,edit2,lab2,id,notif)
 	
 remote func chat_afficher(text):
 	lab.set_text(lab.get_text()+text)
@@ -30,14 +30,15 @@ remote func chat_afficher(text):
 		notifications=0
 		get_node("teteBox2/notification").text=""
 	
-remote func chat_afficher_private(lab2,text):
+remote func chat_afficher_private(panel,lab2,text,notif):
 	lab2.set_text(lab2.text+text)
-	if !get_node("Panel").is_visible_in_tree():
-		notifications+=1
-		get_node("teteBox2/notification").text=str(notifications)
+	var notifs = int()
+	if !panel.is_visible_in_tree():
+		notifs+=1
+		notif.text=str(notifs)
 	else:
-		notifications=0
-		get_node("teteBox2/notification").text=""
+		notifs=0
+		notif.text=""
 
 func envoyer():
 	if (!edit.get_text().empty()):
@@ -80,12 +81,12 @@ func _on_ButtonRetour2_pressed(panel):
 	panel.hide()
 
 		
-func send_private_message(edit2,lab2,id):
+func send_private_message(panel,edit2,lab2,id,notif):
 	if (!edit2.get_text().empty()):
 		var msg = horaire+"/ " + gamestate.infos_joueur.nom +" : " + edit2.get_text()+"\n"
-		chat_afficher_private(lab2,msg)
+		chat_afficher_private(panel,lab2,msg,notif)
 		edit2.text=""
-		rpc_id(id,"chat_afficher_private",lab2,msg)
+		rpc_id(id,"chat_afficher_private",panel,lab2,msg,notif)
 
 func _on_idmsg_pressed():
 	get_node("menuchat").hide()
@@ -105,6 +106,11 @@ func modifications_compte():
 	for player in joueur.keys():
 		if int(player) != info.get("net_id"):
 			var bouton = Button.new()
+			var notif = Label.new()
+			notif.ALIGN_LEFT
+			notif.text="salut"
+			bouton.add_child(notif)
+			#var notifications= bouton.get_child(0)
 			var panel = get_node("Panel").duplicate()
 			get_node(".").add_child(panel)
 			var chatmain = panel.get_child(0)
@@ -116,10 +122,11 @@ func modifications_compte():
 			var Joueur = joueur.get(player)
 			var edit2= panel.get_child(1)
 			var lab2=panel.get_child(0)
+			sujetchat.text = Joueur.nom
 			
 			bouton.text=Joueur.nom
 			bouton.connect("pressed",self,"_on_compte_private_pressed",[panel,Joueur.net_id])
-			butonenvoyer.connect("pressed",self,"_on_Button_pressed_perso",[edit2,lab2,Joueur.net_id])
+			butonenvoyer.connect("pressed",self,"_on_Button_pressed_perso",[panel,edit2,lab2,Joueur.net_id,notif])
 			get_node("menuchat/VBoxContainer").add_child(bouton)
 			
 	
