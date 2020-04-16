@@ -20,7 +20,7 @@ func _on_btCreer_pressed():
 	network.creer_server()
 
 func _pret_a_jouer():
-	get_tree().change_scene("res://Main.tscn")
+	get_tree().change_scene("res://Chatroom.tscn")
 
 func _echec_rejoindre():
 	print("Echec connexion serveur")
