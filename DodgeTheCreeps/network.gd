@@ -22,7 +22,7 @@ func _ready():
 	set_meta("network",name)
 	
 # Tout le monde est averti de l'arrivée d'un nouveau client sur le serveur
-func _joueur_connecte(id):
+func _joueur_connecte(_id):
 		pass
 	
 # Tout le monde est averti quand quelqu'un est déconecté du serveur

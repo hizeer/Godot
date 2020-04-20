@@ -109,4 +109,3 @@ __meta__ = {
 }
 [connection signal="pressed" from="teteBox/ButtonCroix" to="." method="_on_ButtonCroix_pressed"]
 [connection signal="pressed" from="teteBox2/ButtonCroix" to="." method="_on_ButtonCroix_pressed"]
-[connection signal="pressed" from="menuchat/idmsg" to="." method="_on_idmsg_pressed"]
