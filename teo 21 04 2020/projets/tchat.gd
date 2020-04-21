@@ -48,20 +48,20 @@ func send_text(id):
 	var lab = panel.get_node("ChatMain")
 	
 	if (!edit.get_text().empty()):
-		var msg = time+"/ " + gamestate.infos_joueur.nom +" : " + edit.get_text() + "\n"
+		var msg = time+"/ " + gamestate.player_infos.name +" : " + edit.get_text() + "\n"
 		if panel.get_meta("main") == id:
 			rpc("edit_text", msg)
 			
 		else:
 			if (!edit.get_text().empty()):
-				lab.set_text(edit.get_text() + msg)
+				lab.set_text(lab.get_text() + msg)
 				if !panel.is_visible_in_tree():
 					notifications += 1
 					get_node("teteBox2/notification").text=str(notifications)
 				else:
 					notifications = 0
 					get_node("teteBox2/notification").text=""
-			rpc_id(id,"edit_text_private",gamestate.infos_joueur.net_id, msg)
+			rpc_id(id,"edit_text_private",gamestate.player_infos.net_id, msg)
 			
 		edit.set_text(String())
 
@@ -98,7 +98,7 @@ func _modification_private_channel():
 			var bouton = Button.new()
 			
 			var Joueur = dicoJoueur.get(joueur)
-			bouton.set_text(Joueur.nom)
+			bouton.set_text(Joueur.name)
 			
 			var panel  = load("res://Panel duplicate.tscn").instance()
 			panel.set_id(int(joueur))
