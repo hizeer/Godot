@@ -17,7 +17,7 @@ func _ready():
 	panel.get_node("ButtonRetour").connect("pressed",self,"_on_ButtonRetour_pressed", [panel])
 	panel.get_node("Button").connect("pressed",self, "_on_button_envoyer_pressed", [0])
 	
-	network.connect("modification_liste_joueurs", self, "_modification_private_channel")
+	network.connect("_on_players_list_modifs", self, "_modification_private_channel")
 	
 sync func edit_text(text):
 	var lab = get_node("Panel/ChatMain")
@@ -90,7 +90,7 @@ func _modification_private_channel():
 			button.queue_free()
 	
 	var dicoJoueur = network.players
-	var dicoInfo = gamestate.infos_joueur
+	var dicoInfo = gamestate.player_infos
 	
 	for joueur in dicoJoueur.keys() :
 		if (int(joueur) != dicoInfo.get("net_id")):
