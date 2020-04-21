@@ -1,0 +1,197 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://script/PopupMenu.gd" type="Script" id=1]
+[ext_resource path="res://script/PopupMenu2.gd" type="Script" id=2]
+[ext_resource path="res://script/creer.gd" type="Script" id=3]
+[ext_resource path="res://script/AcceptDialog.gd" type="Script" id=4]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.81894
+margin_top = 2.05054
+margin_right = 2.81885
+margin_bottom = 2.0506
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.351
+anchor_top = 0.152
+anchor_right = 0.53
+anchor_bottom = 0.247
+margin_left = -40.28
+margin_top = 91.56
+margin_right = -91.3999
+margin_bottom = 78.16
+text = "Nombre de joueurs"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+anchor_left = 0.07
+anchor_top = 0.167
+anchor_right = 0.07
+anchor_bottom = 0.167
+margin_left = 320.421
+margin_top = 162.024
+margin_right = 494.421
+margin_bottom = 219.024
+text = "Durée d'un tour (s)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button6" type="Button" parent="."]
+anchor_left = 0.07
+anchor_top = 0.167
+anchor_right = 0.07
+anchor_bottom = 0.167
+margin_left = 324.421
+margin_top = 4.02399
+margin_right = 498.421
+margin_bottom = 61.024
+text = "Nom de la partie"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+anchor_left = 1.144
+anchor_right = 2.011
+anchor_bottom = 1.667
+margin_left = -547.456
+margin_top = 41.0
+margin_right = -1294.26
+margin_bottom = -888.2
+hide_on_state_item_selection = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupMenu2" type="PopupMenu" parent="."]
+anchor_left = 1.144
+anchor_right = 2.011
+anchor_bottom = 1.667
+margin_left = -547.456
+margin_top = 39.0
+margin_right = -1294.26
+margin_bottom = -890.2
+hide_on_state_item_selection = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="."]
+margin_left = 315.885
+margin_top = 406.16
+margin_right = 583.885
+margin_bottom = 496.16
+text = "Creer la partie"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Button4" type="Button" parent="."]
+margin_left = 828.0
+margin_top = 526.0
+margin_right = 1004.0
+margin_bottom = 587.0
+text = "Retour"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+visible = true
+margin_left = 653.0
+margin_top = 129.0
+margin_right = 876.0
+margin_bottom = 214.0
+window_title = "Nouveau nom"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="TextEdit" parent="AcceptDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 215.0
+margin_bottom = 49.0
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 115.0
+margin_top = 128.0
+margin_right = 396.0
+margin_bottom = 170.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 9.0
+margin_top = 13.0
+margin_right = 269.0
+margin_bottom = 27.0
+text = "Combat du Généreux et du HMS Leander"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel2" type="Panel" parent="."]
+margin_left = 298.0
+margin_top = 290.0
+margin_right = 387.0
+margin_bottom = 332.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel2"]
+margin_left = 9.0
+margin_top = 13.0
+margin_right = 83.0
+margin_bottom = 27.0
+text = "Non défini"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel3" type="Panel" parent="."]
+margin_left = 293.0
+margin_top = 207.0
+margin_right = 389.0
+margin_bottom = 249.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel3"]
+margin_left = 11.0
+margin_top = 15.0
+margin_right = 88.0
+margin_bottom = 29.0
+text = "Non défini"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Button" to="PopupMenu" method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="PopupMenu2" method="_on_Button2_pressed"]
+[connection signal="pressed" from="Button6" to="AcceptDialog" method="_on_Button6_pressed"]
+[connection signal="id_pressed" from="PopupMenu" to="." method="_on_PopupMenu_id_pressed"]
+[connection signal="id_pressed" from="PopupMenu2" to="." method="_on_PopupMenu2_id_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_Button3_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="pressed" from="Button4" to="." method="_on_Button4_pressed"]
+[connection signal="confirmed" from="AcceptDialog" to="AcceptDialog" method="_on_AcceptDialog_confirmed"]

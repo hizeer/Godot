@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://script/menuSylv.gd" type="Script" id=1]
+[ext_resource path="res://script/cahngerNom.gd" type="Script" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 353.0
+margin_top = 254.0
+margin_right = 633.0
+margin_bottom = 334.0
+text = "Rejoindre"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 353.303
+margin_top = 376.943
+margin_right = 633.303
+margin_bottom = 456.943
+text = "Créer"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="."]
+margin_left = 849.0
+margin_top = 36.0
+margin_right = 950.0
+margin_bottom = 56.0
+text = "Nom joueur"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+visible = true
+anchor_right = 0.4
+margin_left = 284.0
+margin_top = 114.0
+margin_right = 300.4
+margin_bottom = 182.0
+window_title = "Choisissez un nouveau nom"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="TextEdit" parent="AcceptDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 520.4
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="."]
+margin_left = 812.0
+margin_top = 65.0
+margin_right = 994.0
+margin_bottom = 79.0
+text = "C'est PT"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="Button3" to="AcceptDialog" method="_on_Button3_pressed"]
+[connection signal="confirmed" from="AcceptDialog" to="AcceptDialog" method="_on_AcceptDialog_confirmed"]

@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://script/DestroyButton.gd" type="Script" id=1]
+[ext_resource path="res://texture/Button/ButtonDestroy.png" type="Texture" id=2]
+[ext_resource path="res://script/moveButton.gd" type="Script" id=3]
+[ext_resource path="res://texture/Button/ButtonBoat.png" type="Texture" id=4]
+[ext_resource path="res://script/Boat_Action.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 2
+anti_aliasing = false
+
+[node name="Node2D" type="Node2D"]
+z_index = 100
+
+[node name="panneau" type="Panel" parent="."]
+margin_right = 200.0
+margin_bottom = 100.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveButton" type="TextureRect" parent="panneau"]
+margin_left = 19.0
+margin_top = 19.0
+margin_right = 80.0
+margin_bottom = 82.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FireButton" type="TextureRect" parent="panneau"]
+margin_left = 115.0
+margin_top = 20.0
+margin_right = 178.0
+margin_bottom = 81.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
