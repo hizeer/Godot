@@ -49,11 +49,11 @@ func send_text(id):
 	
 	if (!edit.get_text().empty()):
 		var msg = time+"/ " + gamestate.infos_joueur.nom +" : " + edit.get_text() + "\n"
-		if panel.has_meta("main"):
+		if panel.get_meta("main") == id:
 			rpc("edit_text", msg)
 			
 		else:
-			if (!edit.empty()):
+			if (!edit.get_text().empty()):
 				lab.set_text(edit.get_text() + msg)
 				if !panel.is_visible_in_tree():
 					notifications += 1
