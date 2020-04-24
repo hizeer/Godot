@@ -12,20 +12,20 @@ __meta__ = {
 }
 
 [node name="btRetour" type="Button" parent="."]
-anchor_left = 0.46222
-anchor_top = 0.702662
-anchor_right = 0.609877
-anchor_bottom = 0.790163
+anchor_left = 0.459876
+anchor_top = 0.663773
+anchor_right = 0.607533
+anchor_bottom = 0.751274
 text = "Retour"
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="lbAttenteJoueurs" type="Label" parent="."]
-anchor_left = 0.468851
-anchor_top = 0.297222
-anchor_right = 0.575882
-anchor_bottom = 0.340278
+anchor_left = 0.482913
+anchor_top = 0.294444
+anchor_right = 0.589945
+anchor_bottom = 0.3375
 margin_bottom = -1.52588e-05
 text = "En attente de joueurs
 "

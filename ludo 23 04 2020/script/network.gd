@@ -12,6 +12,7 @@ signal server_created
 signal join_success 
 signal join_failed 
 signal _on_players_list_modifs
+signal ready_to_placement
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -19,7 +20,6 @@ func _ready():
 	get_tree().connect("connected_to_server", self, "_connection_server_success")
 	get_tree().connect("connection_failed", self, "_connection_server_failed")
 	get_tree().connect("server_disconnected", self, "_deconnection_server")
-	connect("_on_players_list_modifs", self, "listejoueurmaj")
 	
 func _player_connected(id):
 	pass
@@ -71,8 +71,7 @@ func join_server(ip, port):
 	get_tree().set_network_peer(net)
 
 remote func register_players(pinfo):
-	if (get_tree().is_network_server()):
-		
+	if get_tree().is_network_server():
 		# On the server, we share players information list thanks to connected players
 		for id in players:
 			# Send connected players infos to the new player  
@@ -85,12 +84,8 @@ remote func register_players(pinfo):
 	print("Joueur enregistré ", pinfo.name, " (", pinfo.net_id, ") à la liste des joueurs")
 	players[pinfo.net_id] = pinfo
 	emit_signal("_on_players_list_modifs")
-	
-func listejoueurmaj():
-	if infosGlobales.isServer and (players.size() == infosGlobales.infosPartie.maxPlayers):
-		rpc("lancer")
-		
-sync func lancer():
-	get_tree().change_scene("res://scene/placement.tscn")
-	
 
+	if players.size() == infosGlobales.infosPartie.maxPlayers:
+		if get_tree().is_network_server():
+			emit_signal("ready_to_placement")
+	

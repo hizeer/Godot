@@ -85,7 +85,7 @@ func _on_ButtonCroix_pressed():
 
 func _modification_private_channel():
 	var dicoJoueur = network.players
-	var dicoInfo = gamestate.infos_joueur
+	var dicoInfo = gamestate.player_infos
 
 	for joueur in dicoJoueur.keys() :
 			var tt = false;

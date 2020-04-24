@@ -14,19 +14,37 @@ func _ready():
 	print(infosGlobales.hoteip)
 	
 	if(!isServer):
+		get_node("btLancer").queue_free()
 		print("connexion au serveur")
 		join_server()
 		
 	if(isServer):
-		
 		upnp.discover()
 		upnp.add_port_mapping(infosGlobales.serverPort)
-		create_server();
+		network.connect("ready_to_placement",self,"_on_ready_placement")
+		create_server()
+		
+		var bouton_lancer = Button.new()
+		bouton_lancer.set_position(Vector2(590.642,331.917))
+		bouton_lancer.set_size(Vector2(189,63))
+		bouton_lancer.set_text("LANCER")
+		bouton_lancer.disabled = true
+		bouton_lancer.connect("pressed", self, "_on_bouton_lancer_pressed")
+		get_node(".").add_child(bouton_lancer)
 		
 #func _process(delta):	
-#	if(network.players.size() == InfosGlobales.infos_serveur.joueurs_max):
-	# get_tree().change_scence("res://*.tscn")
+		#pass
 
+func _on_ready_placement():
+	get_node("lbAttenteJoueurs").set_text("Prêt à jouer")
+	get_node(".").get_child(5).disabled = false
+	
+func _on_bouton_lancer_pressed():
+	rpc("lancer_jeu")
+	
+sync func lancer_jeu():
+	get_tree().change_scene("res://scene/placement.tscn")
+	
 func _on_btRetour_pressed():
 	var headers = ["type: quit","id: "+infosGlobales.selectedGame]
 	$HTTPRequest.request("http://www.achline.fr:58080/",headers)
