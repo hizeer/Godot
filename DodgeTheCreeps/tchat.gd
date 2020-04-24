@@ -88,6 +88,11 @@ func _modification_private_channel():
 	for button in get_node("menuchat/VBoxContainer").get_children():
 		if button is Button:
 			button.queue_free()
+			
+	for panel in get_node("menuchat/VBoxContainer").get_children():
+		if panel is Panel:
+					if not panel.get_meta("duplicate") in network.players:
+						panel.queue_free()
 	
 	var dicoJoueur = network.players
 	var dicoInfo = gamestate.infos_joueur
