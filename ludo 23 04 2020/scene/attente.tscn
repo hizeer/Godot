@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://script/attente.gd" type="Script" id=1]
+[ext_resource path="res://scene/TchatRoom.tscn" type="PackedScene" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btRetour" type="Button" parent="."]
+anchor_left = 0.46222
+anchor_top = 0.702662
+anchor_right = 0.609877
+anchor_bottom = 0.790163
+text = "Retour"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="lbAttenteJoueurs" type="Label" parent="."]
+anchor_left = 0.468851
+anchor_top = 0.297222
+anchor_right = 0.575882
+anchor_bottom = 0.340278
+margin_bottom = -1.52588e-05
+text = "En attente de joueurs
+"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="HTTPRequest2" type="HTTPRequest" parent="."]
+
+[node name="TchatRoom" parent="." instance=ExtResource( 2 )]
+[connection signal="pressed" from="btRetour" to="." method="_on_btRetour_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="request_completed" from="HTTPRequest2" to="." method="_on_HTTPRequest2_request_completed"]

@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://script/menuSylv.gd" type="Script" id=1]
+[ext_resource path="res://script/cahngerNom.gd" type="Script" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.275781
+anchor_top = 0.352778
+anchor_right = 0.494531
+anchor_bottom = 0.463889
+text = "Rejoindre"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button2" type="Button" parent="."]
+anchor_left = 0.276018
+anchor_top = 0.523532
+anchor_right = 0.494768
+anchor_bottom = 0.634643
+margin_left = 3.05176e-05
+margin_bottom = 3.05176e-05
+text = "Créer"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button3" type="Button" parent="."]
+anchor_left = 0.663281
+anchor_top = 0.05
+anchor_right = 0.742188
+anchor_bottom = 0.0777778
+margin_bottom = -3.8147e-06
+text = "Nom joueur"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+visible = true
+anchor_left = 0.221875
+anchor_top = 0.158333
+anchor_right = 0.634688
+anchor_bottom = 0.252778
+window_title = "Choisissez un nouveau nom"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="TextEdit" type="TextEdit" parent="AcceptDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 520.4
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.634375
+anchor_top = 0.0902778
+anchor_right = 0.776563
+anchor_bottom = 0.109722
+text = "C'est PT"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="returnMainMenu" type="Button" parent="."]
+anchor_left = 0.769531
+anchor_top = 0.775
+anchor_right = 0.936719
+anchor_bottom = 0.881944
+text = "Retour"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="Button3" to="AcceptDialog" method="_on_Button3_pressed"]
+[connection signal="confirmed" from="AcceptDialog" to="AcceptDialog" method="_on_AcceptDialog_confirmed"]
+[connection signal="pressed" from="returnMainMenu" to="." method="_on_returnMainMenu_pressed"]

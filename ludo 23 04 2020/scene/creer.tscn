@@ -1,0 +1,184 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://script/PopupMenu.gd" type="Script" id=1]
+[ext_resource path="res://script/PopupMenu2.gd" type="Script" id=2]
+[ext_resource path="res://script/creer.gd" type="Script" id=3]
+[ext_resource path="res://script/AcceptDialog.gd" type="Script" id=4]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.81894
+margin_top = 2.05054
+margin_right = 2.81885
+margin_bottom = 2.0506
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.319531
+anchor_top = 0.279167
+anchor_right = 0.458594
+anchor_bottom = 0.355556
+text = "Nombre de joueurs"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button2" type="Button" parent="."]
+anchor_left = 0.320329
+anchor_top = 0.392033
+anchor_right = 0.456266
+anchor_bottom = 0.4712
+margin_left = 3.05176e-05
+text = "Durée d'un tour (s)"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button6" type="Button" parent="."]
+anchor_left = 0.323454
+anchor_top = 0.172589
+anchor_right = 0.459391
+anchor_bottom = 0.251756
+margin_top = -7.62939e-06
+text = "Nom de la partie"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+anchor_left = 0.478125
+anchor_top = 0.148611
+anchor_right = 0.54375
+anchor_bottom = 0.525
+hide_on_state_item_selection = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PopupMenu2" type="PopupMenu" parent="."]
+anchor_left = 0.482031
+anchor_top = 0.155556
+anchor_right = 0.541406
+anchor_bottom = 0.522222
+hide_on_state_item_selection = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button3" type="Button" parent="."]
+anchor_left = 0.246785
+anchor_top = 0.564111
+anchor_right = 0.45616
+anchor_bottom = 0.689111
+text = "Creer la partie"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Button4" type="Button" parent="."]
+anchor_left = 0.646875
+anchor_top = 0.729167
+anchor_right = 0.784375
+anchor_bottom = 0.813889
+text = "Retour"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+visible = true
+anchor_left = 0.510156
+anchor_top = 0.179167
+anchor_right = 0.684375
+anchor_bottom = 0.297222
+margin_left = 6.10352e-05
+window_title = "Nouveau nom"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="TextEdit" type="TextEdit" parent="AcceptDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 215.0
+margin_bottom = 49.0
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.0898438
+anchor_top = 0.177778
+anchor_right = 0.309375
+anchor_bottom = 0.236111
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_left = 0.0320285
+anchor_top = 0.309524
+anchor_right = 0.957295
+anchor_bottom = 0.642857
+text = "Combat du Généreux et du HMS Leander"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel2" type="Panel" parent="."]
+anchor_left = 0.232813
+anchor_top = 0.402778
+anchor_right = 0.302344
+anchor_bottom = 0.461111
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Panel2"]
+anchor_left = 0.101124
+anchor_top = 0.309524
+anchor_right = 0.932584
+anchor_bottom = 0.642857
+text = "Non défini"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel3" type="Panel" parent="."]
+anchor_left = 0.232813
+anchor_top = 0.2875
+anchor_right = 0.303906
+anchor_bottom = 0.345833
+margin_top = 1.52588e-05
+margin_right = -3.05176e-05
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Panel3"]
+anchor_left = 0.114583
+anchor_top = 0.357143
+anchor_right = 0.916667
+anchor_bottom = 0.690476
+text = "Non défini"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+[connection signal="pressed" from="Button" to="PopupMenu" method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="PopupMenu2" method="_on_Button2_pressed"]
+[connection signal="pressed" from="Button6" to="AcceptDialog" method="_on_Button6_pressed"]
+[connection signal="id_pressed" from="PopupMenu" to="." method="_on_PopupMenu_id_pressed"]
+[connection signal="id_pressed" from="PopupMenu2" to="." method="_on_PopupMenu2_id_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_Button3_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="pressed" from="Button4" to="." method="_on_Button4_pressed"]
+[connection signal="confirmed" from="AcceptDialog" to="AcceptDialog" method="_on_AcceptDialog_confirmed"]
