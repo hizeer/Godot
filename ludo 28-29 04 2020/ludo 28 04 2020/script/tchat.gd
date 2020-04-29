@@ -26,7 +26,8 @@ sync func edit_text(text):
 	if !get_node("Panel").is_visible_in_tree():
 		notifications += 1
 		get_node("teteBox2/notification").text=str(notifications)
-		get_node("son_message").play()
+		if get_node("menuchat/bouton_mute").icon == load("res://texture/icone_volume.png"):
+			get_node("son_message").play()
 	else:
 		notifications = 0
 		get_node("teteBox2/notification").text=""
@@ -39,6 +40,8 @@ remote func edit_text_private(id, text):
 	if !panel.is_visible_in_tree():
 		notifications += 1
 		get_node("teteBox2/notification").text=str(notifications)
+		if get_node("menuchat/bouton_mute").icon == load("res://texture/icone_volume.png"):
+			get_node("son_message").play()
 	else:
 		notifications = 0
 		get_node("teteBox2/notification").text=""
@@ -113,6 +116,9 @@ func _modification_private_channel():
 			if i == get_node(".").get_children().size() and int(joueur) != dicoInfo.get("net_id"):
 					var bouton = Button.new()
 					
+					var bouton_mute = get_node("menuchat/bouton_mute")
+					bouton_mute.icon = load("res://texture/icone_volume.png")
+					
 					var Joueur = dicoJoueur.get(joueur)
 					bouton.set_text(Joueur.name)
 		
@@ -128,6 +134,7 @@ func _modification_private_channel():
 				
 					get_node("menuchat/VBoxContainer").add_child(bouton)
 					get_node(".").add_child(panel)
+					get_node(".").add_child(bouton_mute)
 
 func _on_ButtonRetour_pressed(panel: Panel):
 	panel.hide()
@@ -145,3 +152,10 @@ func _on_conv_pressed(panel : Panel):
 	
 func _on_button_envoyer_pressed(id):
 	send_text(id)
+
+
+func _on_bouton_mute_pressed():
+	if get_node("menuchat/bouton_mute").icon == load("res://texture/icone_volume_muted.png"):
+		get_node("menuchat/bouton_mute").icon = load("res://texture/icone_volume.png")
+	else:
+		get_node("menuchat/bouton_mute").icon = load("res://texture/icone_volume_muted.png")
