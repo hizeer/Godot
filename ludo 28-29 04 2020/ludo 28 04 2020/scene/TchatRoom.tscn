@@ -100,15 +100,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="menuchat"]
-margin_left = 20.795
-margin_top = 50.0
-margin_right = 429.795
-margin_bottom = 429.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="bouton_mute" type="Button" parent="menuchat"]
 margin_left = 391.0
 margin_right = 438.0
@@ -118,8 +109,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VBoxContainer" type="VBoxContainer" parent="menuchat"]
+margin_left = 20.795
+margin_top = 50.0
+margin_right = 429.795
+margin_bottom = 429.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="son_message" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 [connection signal="pressed" from="teteBox/ButtonCroix" to="." method="_on_ButtonCroix_pressed"]
 [connection signal="pressed" from="teteBox2/ButtonCroix" to="." method="_on_ButtonCroix_pressed"]
-[connection signal="pressed" from="menuchat/bouton_mute" to="." method="_on_bouton_mute_pressed"]
