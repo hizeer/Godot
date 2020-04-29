@@ -44,7 +44,7 @@ remote func edit_text_private(id, text):
 	if !panel.is_visible_in_tree():
 		notifications += 1
 		get_node("teteBox2/notification").text=str(notifications)
-		if get_boutton_volume(id).icon == load("res://texture/icone_volume.png"):
+		if get_bouton_volume(id).icon == load("res://texture/icone_volume.png"):
 			get_node("son_message").play()
 	else:
 		notifications = 0
@@ -81,7 +81,7 @@ func get_panel(id):
 		if node is Panel and node.has_meta("main") and node.get_meta("main") == id:
 			return node
 
-func get_boutton_volume(id):
+func get_bouton_volume(id):
 	for node in get_node("menuchat/VBoxContainer").get_children():
 		if node is Button and node.has_meta("volume") and node.get_meta("volume") == id:
 			return node
@@ -91,7 +91,7 @@ func _on_ButtonCroix_pressed():
 		for c in get_node(".").get_children():
 			if not c is AudioStreamPlayer: 
 				c.hide()
-			get_node("teteBox2").show()
+		get_node("teteBox2").show()
 			
 	else:
 		get_node("menuchat").show()
@@ -115,11 +115,7 @@ func _modification_private_channel():
 						get_node(".").get_child(i).hide()
 						
 						for bouton in get_node("menuchat/VBoxContainer").get_children():
-							if bouton.has_meta("duplicate") && bouton.get_meta("duplicate") == get_node(".").get_child(i).get_meta("duplicate"):
-								bouton.disabled = true
-								bouton.queue_free()
-								
-							elif bouton.has_meta("volume") && bouton.get_meta("volume") == get_node(".").get_child(i).get_meta("duplicate"):
+							if (bouton.has_meta("duplicate") && bouton.get_meta("duplicate") == get_node(".").get_child(i).get_meta("duplicate")) or (bouton.has_meta("volume") && bouton.get_meta("volume") == get_node(".").get_child(i).get_meta("duplicate")) :
 								bouton.disabled = true
 								bouton.queue_free()
 								
@@ -160,7 +156,7 @@ func _on_ButtonRetour_pressed(panel: Panel):
 	get_node("menuchat").show()
 	
 func _on_conv_pressed(panel : Panel):
-	if (panel.get_meta("duplicate") in network.players.keys()) or (panel.has_meta("main")):
+	if (panel.has_meta("duplicate") and panel.get_meta("duplicate" in network.players.keys())) or (panel.has_meta("main")):
 		get_node("menuchat").hide()
 		panel.show()
 	
