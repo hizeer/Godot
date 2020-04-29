@@ -53,13 +53,14 @@ func send_text(id):
 			rpc("edit_text", msg)
 			
 		else:
-			lab.set_text(lab.get_text() + msg)
-			if !panel.is_visible_in_tree():
-				notifications += 1
-				get_node("teteBox2/notification").text=str(notifications)
-			else:
-				notifications = 0
-				get_node("teteBox2/notification").text=""
+			if (!edit.get_text().empty()):
+				lab.set_text(lab.get_text() + msg)
+				if !panel.is_visible_in_tree():
+					notifications += 1
+					get_node("teteBox2/notification").text=str(notifications)
+				else:
+					notifications = 0
+					get_node("teteBox2/notification").text=""
 			rpc_id(id,"edit_text_private",gamestate.player_infos.net_id, msg)
 			
 		edit.set_text(String())
@@ -84,62 +85,41 @@ func _on_ButtonCroix_pressed():
 
 
 func _modification_private_channel():
+	for button in get_node("menuchat/VBoxContainer").get_children():
+		if button is Button:
+			button.queue_free()
+	
 	var dicoJoueur = network.players
 	var dicoInfo = gamestate.player_infos
-
+	
 	for joueur in dicoJoueur.keys() :
-			var tt = false;
-			var i = 4;
+		if (int(joueur) != dicoInfo.get("net_id")):
 			
-			while (i < get_node(".").get_children().size() and tt == false):
-					if get_node(".").get_child(i).has_meta("duplicate") and get_node(".").get_child(i).get_meta("duplicate") == int(joueur):
-						tt = true
-						
-					elif get_node(".").get_child(i).has_meta("duplicate") and (not get_node(".").get_child(i).get_meta("duplicate") in dicoJoueur.keys()):
-						get_node(".").get_child(i).hide()
-						
-						for bouton in get_node("menuchat/VBoxContainer").get_children():
-							test_supression(get_node(".").get_child(i), bouton)
-							
-						get_node(".").get_child(i).queue_free()
-							
-						tt = true
-						
-					else:
-						i = i + 1
-					
-			if i == get_node(".").get_children().size() and int(joueur) != dicoInfo.get("net_id"):
-					var bouton = Button.new()
-					
-					var Joueur = dicoJoueur.get(joueur)
-					bouton.set_text(Joueur.name)
+			var bouton = Button.new()
+			
+			var Joueur = dicoJoueur.get(joueur)
+			bouton.set_text(Joueur.name)
+			
+			var panel  = load("res://scene/Panel duplicate.tscn").instance()
+			panel.set_id(int(joueur))
 		
-					var panel  = load("res://scene/Panel duplicate.tscn").instance()
-					panel.set_id(int(joueur))
-							
-					var boutonenvoyer = panel.get_node("Button")
-					var boutonretour = panel.get_node("ButtonRetour")
-								
-					bouton.connect("pressed", self, "_on_conv_pressed", [panel])
-					boutonretour.connect("pressed",self,"_on_ButtonRetour_pressed",[panel])
-					boutonenvoyer.connect("pressed",self, "_on_button_envoyer_pressed", [Joueur.net_id])
-				
-					get_node("menuchat/VBoxContainer").add_child(bouton)
-					get_node(".").add_child(panel)
+			var boutonenvoyer = panel.get_node("Button")
+			var boutonretour = panel.get_node("ButtonRetour")
+			
+			bouton.connect("pressed", self, "_on_conv_pressed", [panel])
+			boutonretour.connect("pressed",self,"_on_ButtonRetour_pressed",[panel])
+			boutonenvoyer.connect("pressed",self, "_on_button_envoyer_pressed", [Joueur.net_id])
+			
+			get_node("menuchat/VBoxContainer").add_child(bouton)
+			get_node(".").add_child(panel)
 
 func _on_ButtonRetour_pressed(panel: Panel):
 	panel.hide()
 	get_node("menuchat").show()
-	
-func test_supression(panel: Panel, bouton: Button):
-	if (not panel.get_meta("duplicate") in network.players.keys()) and (not panel.has_meta("main") or panel.has_meta("duplicate")):
-		bouton.disabled = true
-		bouton.queue_free()
 
 func _on_conv_pressed(panel : Panel):
-	if (panel.get_meta("duplicate") in network.players.keys()) or (panel.has_meta("main")):
-		get_node("menuchat").hide()
-		panel.show()
+	get_node("menuchat").hide()
+	panel.show()
 	
 func _on_button_envoyer_pressed(id):
 	send_text(id)
