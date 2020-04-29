@@ -35,7 +35,7 @@ margin_left = 415.0
 margin_top = 10.0
 margin_right = 435.0
 margin_bottom = 30.0
-text = "X"
+text = "+"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -94,7 +94,7 @@ __meta__ = {
 margin_left = 25.0
 margin_top = 5.0
 margin_right = 375.0
-margin_bottom = 30.0
+margin_bottom = 36.0
 text = "Main Chat "
 __meta__ = {
 "_edit_use_anchors_": false
@@ -110,9 +110,9 @@ __meta__ = {
 }
 
 [node name="bouton_mute" type="Button" parent="menuchat"]
-margin_left = 393.0
-margin_right = 435.0
-margin_bottom = 36.0
+margin_left = 391.0
+margin_right = 438.0
+margin_bottom = 41.0
 icon = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
