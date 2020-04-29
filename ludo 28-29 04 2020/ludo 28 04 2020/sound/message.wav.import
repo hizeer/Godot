@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/message.wav-0340d2dbc23dfcd8018dfe978b4cb1db.sample"
+
+[deps]
+
+source_file="res://sound/message.wav"
+dest_files=[ "res://.import/message.wav-0340d2dbc23dfcd8018dfe978b4cb1db.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

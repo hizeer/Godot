@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://script/tchat.gd" type="Script" id=1]
 [ext_resource path="res://scene/Panel duplicate.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sound/message.wav" type="AudioStream" id=3]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -106,5 +107,8 @@ margin_bottom = 429.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="son_message" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 [connection signal="pressed" from="teteBox/ButtonCroix" to="." method="_on_ButtonCroix_pressed"]
 [connection signal="pressed" from="teteBox2/ButtonCroix" to="." method="_on_ButtonCroix_pressed"]

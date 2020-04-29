@@ -26,6 +26,7 @@ sync func edit_text(text):
 	if !get_node("Panel").is_visible_in_tree():
 		notifications += 1
 		get_node("teteBox2/notification").text=str(notifications)
+		get_node("son_message").play()
 	else:
 		notifications = 0
 		get_node("teteBox2/notification").text=""
@@ -74,7 +75,8 @@ func get_panel(id):
 func _on_ButtonCroix_pressed():
 	if(!get_node("teteBox2").is_visible_in_tree()):
 		for c in get_node(".").get_children():
-			c.hide()
+			if not c is AudioStreamPlayer: 
+				c.hide()
 			get_node("teteBox2").show()
 			
 	else:
