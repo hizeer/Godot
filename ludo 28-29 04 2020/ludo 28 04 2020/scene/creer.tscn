@@ -1,0 +1,495 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://script/PopupMenu.gd" type="Script" id=1]
+[ext_resource path="res://script/PopupMenu2.gd" type="Script" id=2]
+[ext_resource path="res://script/creer.gd" type="Script" id=3]
+[ext_resource path="res://script/AcceptDialog.gd" type="Script" id=4]
+[ext_resource path="res://script/PopupMenu3.gd" type="Script" id=5]
+[ext_resource path="res://script/PopupMenu4.gd" type="Script" id=6]
+[ext_resource path="res://font30.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Montserrat-ExtraBold.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://diodealum.tres" type="StyleBox" id=9]
+[ext_resource path="res://diodeetein.tres" type="StyleBox" id=10]
+[ext_resource path="res://font16.tres" type="DynamicFont" id=11]
+[ext_resource path="res://vertetein.tres" type="StyleBox" id=12]
+[ext_resource path="res://vertalum.tres" type="StyleBox" id=13]
+[ext_resource path="res://texture/aiguille.png" type="Texture" id=14]
+[ext_resource path="res://texture/compteur.png" type="Texture" id=15]
+[ext_resource path="res://sound/mclick.wav" type="AudioStream" id=16]
+[ext_resource path="res://sound/click.wav" type="AudioStream" id=17]
+[ext_resource path="res://anim/fade_in.tscn" type="PackedScene" id=18]
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 8 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.495239
+margin_top = -2.97113
+margin_right = -0.495361
+margin_bottom = -2.97107
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.3
+anchor_top = 0.277778
+anchor_right = 0.45
+anchor_bottom = 0.354167
+custom_styles/hover = ExtResource( 9 )
+custom_styles/normal = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Button"]
+anchor_top = -0.00802112
+anchor_right = 1.0
+anchor_bottom = 0.991979
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+text = "Nombre de joueurs"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+anchor_left = 0.3
+anchor_top = 0.366667
+anchor_right = 0.45
+anchor_bottom = 0.445833
+margin_left = 3.05176e-05
+custom_styles/hover = ExtResource( 9 )
+custom_styles/normal = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Button2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+text = "Durée d'un tour"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button5" type="Button" parent="."]
+anchor_left = 0.301339
+anchor_top = 0.548411
+anchor_right = 0.451339
+anchor_bottom = 0.627578
+margin_left = 3.05176e-05
+custom_styles/hover = ExtResource( 9 )
+custom_styles/normal = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Button5"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button5/VBoxContainer"]
+margin_right = 191.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+text = "Taille du plateau"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Button5/VBoxContainer"]
+margin_top = 30.0
+margin_right = 191.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+text = "de départ"
+align = 1
+valign = 1
+
+[node name="Button7" type="Button" parent="."]
+anchor_left = 0.3
+anchor_top = 0.455556
+anchor_right = 0.45
+anchor_bottom = 0.533333
+margin_left = -3.05176e-05
+custom_styles/hover = ExtResource( 9 )
+custom_styles/normal = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Button7"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button7/VBoxContainer"]
+margin_right = 192.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+text = "Ecartement des"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Button7/VBoxContainer"]
+margin_top = 29.0
+margin_right = 192.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 11 )
+text = "joueurs"
+align = 1
+valign = 1
+
+[node name="Button6" type="Button" parent="."]
+anchor_left = 0.3
+anchor_top = 0.188889
+anchor_right = 0.45
+anchor_bottom = 0.268056
+custom_styles/hover = ExtResource( 9 )
+custom_styles/normal = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Button6"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+text = "Nom de la partie"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+anchor_left = 0.475
+anchor_top = 0.188889
+anchor_right = 0.525
+anchor_bottom = 0.216667
+hide_on_state_item_selection = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PopupMenu2" type="PopupMenu" parent="."]
+anchor_left = 0.475
+anchor_top = 0.188889
+anchor_right = 0.525
+anchor_bottom = 0.216667
+hide_on_state_item_selection = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PopupMenu3" type="PopupMenu" parent="."]
+anchor_left = 0.475
+anchor_top = 0.188889
+anchor_right = 0.525
+anchor_bottom = 0.216667
+hide_on_state_item_selection = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PopupMenu4" type="PopupMenu" parent="."]
+anchor_left = 0.475
+anchor_top = 0.188889
+anchor_right = 0.525
+anchor_bottom = 0.216667
+hide_on_state_item_selection = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button3" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -155.5
+margin_top = -130.0
+margin_right = 155.5
+margin_bottom = -40.0
+custom_styles/hover = ExtResource( 13 )
+custom_styles/normal = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.426636
+margin_top = 0.756592
+margin_right = 0.426636
+margin_bottom = 0.756592
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 5
+text = "Creer la partie"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Button4" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -208.0
+margin_top = -92.9999
+margin_right = -32.0
+margin_bottom = -32.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 5
+text = "Retour"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+anchor_left = 0.510156
+anchor_top = 0.179167
+anchor_right = 0.684375
+anchor_bottom = 0.297222
+margin_left = 6.10352e-05
+window_title = "Nouveau nom"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="TextEdit" type="TextEdit" parent="AcceptDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 215.0
+margin_bottom = 48.9996
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.0709811
+anchor_top = 0.2
+anchor_right = 0.290512
+anchor_bottom = 0.258333
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_left = 0.0320285
+anchor_top = 0.309524
+anchor_right = 0.957295
+anchor_bottom = 0.642857
+text = "Combat du Généreux et du HMS Leander"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel2" type="Panel" parent="."]
+anchor_left = 0.21875
+anchor_top = 0.377778
+anchor_right = 0.288281
+anchor_bottom = 0.436111
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Panel2"]
+anchor_left = 0.101124
+anchor_top = 0.309524
+anchor_right = 0.932584
+anchor_bottom = 0.642857
+text = "Non défini"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel4" type="Panel" parent="."]
+anchor_left = 0.21875
+anchor_top = 0.466667
+anchor_right = 0.288281
+anchor_bottom = 0.525
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Panel4"]
+anchor_left = 0.101124
+anchor_top = 0.309524
+anchor_right = 0.932584
+anchor_bottom = 0.642857
+text = "Non défini"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel5" type="Panel" parent="."]
+anchor_left = 0.21875
+anchor_top = 0.555556
+anchor_right = 0.288281
+anchor_bottom = 0.613889
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Panel5"]
+anchor_left = 0.101124
+anchor_top = 0.309524
+anchor_right = 0.932584
+anchor_bottom = 0.642857
+text = "Non défini"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel3" type="Panel" parent="."]
+anchor_left = 0.21875
+anchor_top = 0.288889
+anchor_right = 0.289843
+anchor_bottom = 0.347222
+margin_top = 1.52588e-05
+margin_right = -3.05176e-05
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Panel3"]
+anchor_left = 0.114583
+anchor_top = 0.357143
+anchor_right = 0.916667
+anchor_bottom = 0.690476
+text = "Non défini"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_right = 0.00012207
+margin_bottom = 131.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 7
+text = "Options de création"
+align = 1
+valign = 1
+
+[node name="CadranNBJ" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -280.0
+margin_top = -20.0
+margin_right = -240.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="compteur" type="Sprite" parent="CadranNBJ"]
+scale = Vector2( 0.303559, 0.303559 )
+texture = ExtResource( 15 )
+
+[node name="aiguille" type="Sprite" parent="CadranNBJ"]
+scale = Vector2( 0.281115, 0.281115 )
+texture = ExtResource( 14 )
+
+[node name="clic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = -25.409
+
+[node name="fadeIn" parent="." instance=ExtResource( 18 )]
+visible = false
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+[connection signal="pressed" from="Button" to="PopupMenu" method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="PopupMenu2" method="_on_Button2_pressed"]
+[connection signal="pressed" from="Button5" to="PopupMenu4" method="_on_Button5_pressed"]
+[connection signal="pressed" from="Button7" to="PopupMenu3" method="_on_Button7_pressed"]
+[connection signal="pressed" from="Button6" to="AcceptDialog" method="_on_Button6_pressed"]
+[connection signal="id_pressed" from="PopupMenu" to="." method="_on_PopupMenu_id_pressed"]
+[connection signal="id_pressed" from="PopupMenu2" to="." method="_on_PopupMenu2_id_pressed"]
+[connection signal="id_pressed" from="PopupMenu3" to="." method="_on_PopupMenu3_id_pressed"]
+[connection signal="id_pressed" from="PopupMenu4" to="." method="_on_PopupMenu4_id_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_Button3_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="pressed" from="Button4" to="." method="_on_Button4_pressed"]
+[connection signal="confirmed" from="AcceptDialog" to="AcceptDialog" method="_on_AcceptDialog_confirmed"]
+[connection signal="fade_finished" from="fadeIn" to="." method="_on_fadeIn_fade_finished"]

@@ -1,0 +1,213 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://script/menuSylv.gd" type="Script" id=1]
+[ext_resource path="res://script/cahngerNom.gd" type="Script" id=2]
+[ext_resource path="res://Montserrat-ExtraBold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://font30.tres" type="DynamicFont" id=4]
+[ext_resource path="res://vertetein.tres" type="StyleBox" id=5]
+[ext_resource path="res://vertalum.tres" type="StyleBox" id=6]
+[ext_resource path="res://diodealum.tres" type="StyleBox" id=7]
+[ext_resource path="res://diodeetein.tres" type="StyleBox" id=8]
+[ext_resource path="res://texture/titre.png" type="Texture" id=9]
+[ext_resource path="res://sound/click.wav" type="AudioStream" id=10]
+[ext_resource path="res://anim/fade_in.tscn" type="PackedScene" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 3 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.05701
+margin_right = -1.05701
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 232.0
+margin_top = -7.99997
+margin_right = 512.0
+margin_bottom = 72.0
+custom_styles/hover = ExtResource( 6 )
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 4
+text = "Rejoindre"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 232.0
+margin_top = 104.0
+margin_right = 512.0
+margin_bottom = 184.0
+custom_styles/hover = ExtResource( 7 )
+custom_styles/normal = ExtResource( 8 )
+custom_fonts/font = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 4
+text = "Créer"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -381.0
+margin_top = 17.0
+margin_right = -192.0
+margin_bottom = 79.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+text = "Changer de nom"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Button3"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -181.877
+margin_top = 71.4756
+margin_right = 0.123779
+margin_bottom = 92.4756
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "C'est PT"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AcceptDialog" type="AcceptDialog" parent="Button3"]
+visible = true
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -366.155
+margin_top = 141.607
+margin_right = 162.246
+margin_bottom = 209.608
+window_title = "Choisissez un nouveau nom"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="TextEdit" parent="Button3/AcceptDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 520.401
+margin_bottom = 32.0004
+
+[node name="returnMainMenu" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -295.0
+margin_top = -138.0
+margin_right = -32.0
+margin_bottom = -32.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="returnMainMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 4
+text = "Retour"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+margin_left = -1.0
+margin_top = -1.0
+margin_right = -1.0
+margin_bottom = 208.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 9 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="clic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="fadeIn" parent="." instance=ExtResource( 11 )]
+visible = false
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="Button3" to="Button3/AcceptDialog" method="_on_Button3_pressed"]
+[connection signal="confirmed" from="Button3/AcceptDialog" to="Button3/AcceptDialog" method="_on_AcceptDialog_confirmed"]
+[connection signal="pressed" from="returnMainMenu" to="." method="_on_returnMainMenu_pressed"]
+[connection signal="fade_finished" from="fadeIn" to="." method="_on_fadeIn_fade_finished"]

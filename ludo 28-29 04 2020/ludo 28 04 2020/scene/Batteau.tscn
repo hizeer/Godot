@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://script/Bateau.gd" type="Script" id=1]
+[ext_resource path="res://texture/Case/contour.png" type="Texture" id=2]
+[ext_resource path="res://ShaderMaterial/boatrmaterial.tres" type="Material" id=3]
+
+[node name="Boat" type="Node2D"]
+z_index = 1
+script = ExtResource( 1 )
+
+[node name="Affichage" type="VBoxContainer" parent="."]
+material = ExtResource( 3 )
+margin_right = 40.0
+margin_bottom = 120.0
+rect_pivot_offset = Vector2( 20, 60 )
+mouse_filter = 2
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hover" type="NinePatchRect" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 120.0
+rect_pivot_offset = Vector2( 20, 60 )
+texture = ExtResource( 2 )
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

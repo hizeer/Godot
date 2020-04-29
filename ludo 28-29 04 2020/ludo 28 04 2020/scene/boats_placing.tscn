@@ -1,0 +1,301 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://script/createButton.gd" type="Script" id=1]
+[ext_resource path="res://texture/Boat/BoatFront.png" type="Texture" id=2]
+[ext_resource path="res://texture/Boat/BoatBack.png" type="Texture" id=3]
+[ext_resource path="res://texture/Boat/Boat1.png" type="Texture" id=4]
+[ext_resource path="res://texture/Boat/Boat2.png" type="Texture" id=5]
+[ext_resource path="res://texture/Boat/Boat3.png" type="Texture" id=6]
+[ext_resource path="res://script/boats_placing.gd" type="Script" id=7]
+
+[node name="boats_placing" type="Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -278.0
+margin_bottom = 720.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 278.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+margin_right = 278.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/CenterContainer"]
+margin_left = 51.0
+margin_top = 280.0
+margin_right = 227.0
+margin_bottom = 440.0
+
+[node name="boat_size_2" type="VBoxContainer" parent="Panel/CenterContainer/HBoxContainer"]
+margin_right = 32.0
+margin_bottom = 160.0
+custom_constants/separation = 0
+
+[node name="front" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_2"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+hoverTex = ExtResource( 2 )
+activatedTex = ExtResource( 2 )
+size = 2
+vision = 3
+portee = 3
+id = 1
+
+[node name="back" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_2"]
+margin_top = 32.0
+margin_right = 32.0
+margin_bottom = 64.0
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+hoverTex = ExtResource( 3 )
+activatedTex = ExtResource( 3 )
+size = 2
+ordre = 1
+vision = 3
+portee = 3
+id = 1
+
+[node name="boat_size_3_1" type="VBoxContainer" parent="Panel/CenterContainer/HBoxContainer"]
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 160.0
+custom_constants/separation = 0
+
+[node name="front" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_3_1"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+hoverTex = ExtResource( 2 )
+activatedTex = ExtResource( 2 )
+size = 3
+vision = 4
+portee = 4
+id = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_3_1"]
+margin_top = 32.0
+margin_right = 32.0
+margin_bottom = 64.0
+texture = ExtResource( 4 )
+script = ExtResource( 1 )
+hoverTex = ExtResource( 4 )
+activatedTex = ExtResource( 4 )
+size = 3
+ordre = 1
+vision = 4
+portee = 4
+id = 2
+
+[node name="back" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_3_1"]
+margin_top = 64.0
+margin_right = 32.0
+margin_bottom = 96.0
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+hoverTex = ExtResource( 3 )
+activatedTex = ExtResource( 3 )
+size = 3
+ordre = 2
+vision = 4
+portee = 4
+id = 2
+
+[node name="boat_size_3_2" type="VBoxContainer" parent="Panel/CenterContainer/HBoxContainer"]
+margin_left = 72.0
+margin_right = 104.0
+margin_bottom = 160.0
+custom_constants/separation = 0
+
+[node name="front" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_3_2"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+hoverTex = ExtResource( 2 )
+activatedTex = ExtResource( 2 )
+size = 3
+vision = 4
+portee = 4
+id = 3
+
+[node name="TextureRect" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_3_2"]
+margin_top = 32.0
+margin_right = 32.0
+margin_bottom = 64.0
+texture = ExtResource( 5 )
+script = ExtResource( 1 )
+hoverTex = ExtResource( 5 )
+activatedTex = ExtResource( 5 )
+size = 3
+ordre = 1
+vision = 4
+portee = 4
+id = 3
+
+[node name="back" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_3_2"]
+margin_top = 64.0
+margin_right = 32.0
+margin_bottom = 96.0
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+hoverTex = ExtResource( 3 )
+activatedTex = ExtResource( 3 )
+size = 3
+ordre = 2
+vision = 4
+portee = 4
+id = 3
+
+[node name="boat_size_4" type="VBoxContainer" parent="Panel/CenterContainer/HBoxContainer"]
+margin_left = 108.0
+margin_right = 140.0
+margin_bottom = 160.0
+custom_constants/separation = 0
+
+[node name="front" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_4"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+hoverTex = ExtResource( 2 )
+activatedTex = ExtResource( 2 )
+vision = 6
+id = 4
+
+[node name="TextureRect" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_4"]
+margin_top = 32.0
+margin_right = 32.0
+margin_bottom = 64.0
+texture = ExtResource( 4 )
+script = ExtResource( 1 )
+hoverTex = ExtResource( 4 )
+activatedTex = ExtResource( 4 )
+ordre = 1
+vision = 6
+id = 4
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_4"]
+margin_top = 64.0
+margin_right = 32.0
+margin_bottom = 96.0
+texture = ExtResource( 6 )
+script = ExtResource( 1 )
+hoverTex = ExtResource( 6 )
+activatedTex = ExtResource( 6 )
+ordre = 2
+vision = 6
+id = 4
+
+[node name="back" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_4"]
+margin_top = 96.0
+margin_right = 32.0
+margin_bottom = 128.0
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+hoverTex = ExtResource( 3 )
+activatedTex = ExtResource( 3 )
+ordre = 3
+vision = 6
+id = 4
+
+[node name="boat_size_5" type="VBoxContainer" parent="Panel/CenterContainer/HBoxContainer"]
+margin_left = 144.0
+margin_right = 176.0
+margin_bottom = 160.0
+custom_constants/separation = 0
+
+[node name="front" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_5"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+hoverTex = ExtResource( 2 )
+activatedTex = ExtResource( 2 )
+size = 5
+vision = 8
+portee = 6
+id = 5
+
+[node name="TextureRect" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_5"]
+margin_top = 32.0
+margin_right = 32.0
+margin_bottom = 64.0
+texture = ExtResource( 5 )
+script = ExtResource( 1 )
+hoverTex = ExtResource( 5 )
+activatedTex = ExtResource( 5 )
+size = 5
+ordre = 1
+vision = 8
+portee = 6
+id = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_5"]
+margin_top = 64.0
+margin_right = 32.0
+margin_bottom = 96.0
+texture = ExtResource( 6 )
+script = ExtResource( 1 )
+hoverTex = ExtResource( 6 )
+activatedTex = ExtResource( 6 )
+size = 5
+ordre = 2
+vision = 8
+portee = 6
+id = 5
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_5"]
+margin_top = 96.0
+margin_right = 32.0
+margin_bottom = 128.0
+texture = ExtResource( 4 )
+script = ExtResource( 1 )
+hoverTex = ExtResource( 4 )
+activatedTex = ExtResource( 4 )
+size = 5
+ordre = 3
+vision = 8
+portee = 6
+id = 5
+
+[node name="back" type="TextureRect" parent="Panel/CenterContainer/HBoxContainer/boat_size_5"]
+margin_top = 128.0
+margin_right = 32.0
+margin_bottom = 160.0
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+hoverTex = ExtResource( 3 )
+activatedTex = ExtResource( 3 )
+size = 5
+ordre = 4
+vision = 8
+portee = 6
+id = 5
