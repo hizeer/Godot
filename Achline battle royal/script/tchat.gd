@@ -128,6 +128,12 @@ func _modification_private_channel():
 			if i == get_node(".").get_children().size() and int(joueur) != dicoInfo.get("net_id"):
 					var bouton = Button.new()
 					bouton.set_meta("duplicate",int(joueur))
+					bouton.rect_size.x = 350
+					bouton.rect_size.y = 31
+					bouton.margin_left = 25
+					bouton.margin_top = 5
+					bouton.margin_right = 375
+					bouton.margin_bottom = 36
 					
 					var bouton_mute = get_node("menuchat/bouton_mute").duplicate()
 					bouton_mute.icon = load("res://texture/icone_volume.png")
@@ -138,6 +144,15 @@ func _modification_private_channel():
 		
 					var panel  = load("res://scene/Panel duplicate.tscn").instance()
 					panel.set_meta("duplicate",int(joueur))
+					
+					bouton_mute.rect_position.x = 391
+					bouton_mute.rect_position.y = panel.rect_position.y - 5
+					bouton_mute.rect_size.x = 47
+					bouton_mute.rect_size.y = 41
+					bouton.margin_left = 391
+					bouton.margin_top = 0
+					bouton.margin_right = 438
+					bouton.margin_bottom = 41
 							
 					var boutonenvoyer = panel.get_node("Button")
 					var boutonretour = panel.get_node("ButtonRetour")
