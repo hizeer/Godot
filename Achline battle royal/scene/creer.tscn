@@ -1,0 +1,617 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://script/PopupMenu.gd" type="Script" id=1]
+[ext_resource path="res://script/PopupMenu2.gd" type="Script" id=2]
+[ext_resource path="res://script/creer.gd" type="Script" id=3]
+[ext_resource path="res://script/AcceptDialog.gd" type="Script" id=4]
+[ext_resource path="res://script/PopupMenu3.gd" type="Script" id=5]
+[ext_resource path="res://script/PopupMenu4.gd" type="Script" id=6]
+[ext_resource path="res://font30.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Montserrat-ExtraBold.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://diodealum.tres" type="StyleBox" id=9]
+[ext_resource path="res://diodeetein.tres" type="StyleBox" id=10]
+[ext_resource path="res://font16.tres" type="DynamicFont" id=11]
+[ext_resource path="res://vertetein.tres" type="StyleBox" id=12]
+[ext_resource path="res://vertalum.tres" type="StyleBox" id=13]
+[ext_resource path="res://texture/interface/aiguille.png" type="Texture" id=14]
+[ext_resource path="res://texture/interface/compteur.png" type="Texture" id=15]
+[ext_resource path="res://sound/mclick.wav" type="AudioStream" id=16]
+[ext_resource path="res://sound/click.wav" type="AudioStream" id=17]
+[ext_resource path="res://anim/fade_in.tscn" type="PackedScene" id=18]
+[ext_resource path="res://texture/interface/troteuse.png" type="Texture" id=20]
+[ext_resource path="res://texture/interface/chrono.png" type="Texture" id=21]
+[ext_resource path="res://texture/interface/compasnormal.png" type="Texture" id=22]
+[ext_resource path="res://texture/interface/compasserres.png" type="Texture" id=23]
+[ext_resource path="res://texture/interface/compasouvert.png" type="Texture" id=24]
+[ext_resource path="res://texture/interface/auguilleahuile.png" type="Texture" id=25]
+[ext_resource path="res://texture/interface/jaugeahuile.png" type="Texture" id=26]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 14
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 14
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 14
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 14
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 50
+font_data = ExtResource( 8 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 23 ), ExtResource( 22 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Control" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.0555142
+anchor_top = 0.439727
+anchor_right = 0.205514
+anchor_bottom = 0.516116
+custom_styles/hover = ExtResource( 9 )
+custom_styles/normal = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Button"]
+anchor_top = -0.00802112
+anchor_right = 1.0
+anchor_bottom = 0.991979
+margin_top = 0.441162
+margin_bottom = 0.441162
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+text = "Nombre de joueurs"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+anchor_left = 0.252443
+anchor_top = 0.438115
+anchor_right = 0.402442
+anchor_bottom = 0.517281
+margin_top = 0.55719
+margin_right = -6.10352e-05
+margin_bottom = 0.55719
+custom_styles/hover = ExtResource( 9 )
+custom_styles/normal = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Button2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+text = "Durée d'un tour"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button5" type="Button" parent="."]
+anchor_left = 0.801698
+anchor_top = 0.42814
+anchor_right = 0.951698
+anchor_bottom = 0.507307
+margin_left = -0.000366211
+margin_top = 7.7392
+margin_right = -0.000366211
+margin_bottom = 7.7392
+custom_styles/hover = ExtResource( 9 )
+custom_styles/normal = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Button5"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button5/VBoxContainer"]
+margin_right = 192.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+text = "Taille du plateau"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Button5/VBoxContainer"]
+margin_top = 30.0
+margin_right = 192.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+text = "de départ"
+align = 1
+valign = 1
+
+[node name="Button7" type="Button" parent="."]
+anchor_left = 0.579987
+anchor_top = 0.435312
+anchor_right = 0.729986
+anchor_bottom = 0.513089
+margin_left = -0.000305176
+margin_top = 2.57535
+margin_right = -0.000244141
+margin_bottom = 2.57535
+custom_styles/hover = ExtResource( 9 )
+custom_styles/normal = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Button7"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button7/VBoxContainer"]
+margin_right = 191.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+text = "Ecartement des"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Button7/VBoxContainer"]
+margin_top = 29.0
+margin_right = 191.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 11 )
+text = "joueurs"
+align = 1
+valign = 1
+
+[node name="Button6" type="Button" parent="."]
+anchor_left = 0.293302
+anchor_top = 0.677116
+anchor_right = 0.443302
+anchor_bottom = 0.756283
+custom_styles/hover = ExtResource( 9 )
+custom_styles/normal = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Button6"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.857361
+margin_bottom = -0.857361
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+text = "Nom de la partie"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+anchor_left = 0.475
+anchor_top = 0.188889
+anchor_right = 0.525
+anchor_bottom = 0.216667
+hide_on_state_item_selection = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PopupMenu2" type="PopupMenu" parent="."]
+anchor_left = 0.475
+anchor_top = 0.188889
+anchor_right = 0.525
+anchor_bottom = 0.216667
+hide_on_state_item_selection = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PopupMenu3" type="PopupMenu" parent="."]
+anchor_left = 0.475
+anchor_top = 0.188889
+anchor_right = 0.525
+anchor_bottom = 0.216667
+hide_on_state_item_selection = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PopupMenu4" type="PopupMenu" parent="."]
+anchor_left = 0.475
+anchor_top = 0.188889
+anchor_right = 0.525
+anchor_bottom = 0.216667
+hide_on_state_item_selection = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button3" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -155.5
+margin_top = -130.0
+margin_right = 155.5
+margin_bottom = -40.0
+custom_styles/hover = ExtResource( 13 )
+custom_styles/normal = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.426636
+margin_top = 0.756592
+margin_right = 0.426636
+margin_bottom = 0.756592
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 5
+text = "Creer la partie"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Button4" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -208.0
+margin_top = -92.9999
+margin_right = -32.0
+margin_bottom = -32.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 5
+text = "Retour"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+anchor_left = 0.510156
+anchor_top = 0.179167
+anchor_right = 0.684375
+anchor_bottom = 0.297222
+margin_left = 6.10352e-05
+window_title = "Nouveau nom"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="TextEdit" type="TextEdit" parent="AcceptDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 215.0
+margin_bottom = 48.9996
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.490625
+anchor_top = 0.684722
+anchor_right = 0.765625
+anchor_bottom = 0.747222
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_left = 0.0121517
+anchor_top = 0.227091
+anchor_right = 0.986348
+anchor_bottom = 0.804425
+margin_right = 0.0828857
+margin_bottom = -1.98
+custom_fonts/font = SubResource( 1 )
+text = "Combat du Généreux et du HMS Leander"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel2" type="Panel" parent="."]
+anchor_left = 0.298459
+anchor_top = 0.5302
+anchor_right = 0.36799
+anchor_bottom = 0.588533
+margin_left = 0.000488281
+margin_top = 8.25601
+margin_right = 0.000488281
+margin_bottom = 8.25601
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Panel2"]
+anchor_left = 0.0631356
+anchor_top = 0.287569
+anchor_right = 0.928307
+anchor_bottom = 0.716144
+custom_fonts/font = SubResource( 2 )
+text = "Non défini"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel4" type="Panel" parent="."]
+anchor_left = 0.624664
+anchor_top = 0.54645
+anchor_right = 0.694195
+anchor_bottom = 0.604783
+margin_left = 0.00012207
+margin_top = -3.44397
+margin_right = 0.00012207
+margin_bottom = -3.44397
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Panel4"]
+anchor_left = 0.000571264
+anchor_top = 0.264593
+anchor_right = 1.00058
+anchor_bottom = 0.764596
+custom_fonts/font = SubResource( 3 )
+text = "Non défini"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel5" type="Panel" parent="."]
+anchor_left = 0.848385
+anchor_top = 0.535312
+anchor_right = 0.917916
+anchor_bottom = 0.593645
+margin_left = 0.000366211
+margin_top = 4.57538
+margin_right = 0.000366211
+margin_bottom = 4.57538
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Panel5"]
+anchor_left = 0.0700426
+anchor_top = 0.274704
+anchor_right = 0.935214
+anchor_bottom = 0.703278
+custom_fonts/font = SubResource( 4 )
+text = "Non défini"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel3" type="Panel" parent="."]
+anchor_left = 0.0934929
+anchor_top = 0.544911
+anchor_right = 0.164586
+anchor_bottom = 0.603244
+margin_left = 9.15527e-05
+margin_top = -2.33591
+margin_right = 6.10352e-05
+margin_bottom = -2.33594
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Panel3"]
+anchor_left = 0.0791279
+anchor_top = 0.236294
+anchor_right = 0.92529
+anchor_bottom = 0.664869
+custom_fonts/font = SubResource( 5 )
+text = "Non défini"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_right = 0.00012207
+margin_bottom = 131.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 7
+text = "Options de création"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="huile" type="Control" parent="."]
+anchor_left = 0.876837
+anchor_top = 0.3654
+anchor_right = 0.876837
+anchor_bottom = 0.3654
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="jaugeahuile" type="Sprite" parent="huile"]
+position = Vector2( 1.2666, -14.4448 )
+scale = Vector2( 0.170466, 0.170466 )
+texture = ExtResource( 26 )
+
+[node name="auguilleahuile" type="Sprite" parent="huile"]
+position = Vector2( 1.26416, 16.5372 )
+rotation = -0.918043
+scale = Vector2( 0.195651, 0.195651 )
+texture = ExtResource( 25 )
+offset = Vector2( -0.671875, -190.768 )
+
+[node name="compas" type="Control" parent="."]
+anchor_left = 0.653767
+anchor_top = 0.3362
+anchor_right = 0.653767
+anchor_bottom = 0.3362
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="compas"]
+position = Vector2( 0.407227, -13.4393 )
+scale = Vector2( 0.301625, 0.301625 )
+frames = SubResource( 7 )
+
+[node name="Chrono" type="Control" parent="."]
+anchor_left = 0.32917
+anchor_top = 0.324584
+anchor_right = 0.32917
+anchor_bottom = 0.324584
+margin_top = -1.52588e-05
+margin_bottom = -1.52588e-05
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="chrono" type="Sprite" parent="Chrono"]
+position = Vector2( 0.424927, -2.50598 )
+scale = Vector2( 0.311245, 0.311245 )
+texture = ExtResource( 21 )
+offset = Vector2( -1.53027, -46.4481 )
+
+[node name="troteuse" type="Sprite" parent="Chrono"]
+position = Vector2( 0.509888, -1.84076 )
+scale = Vector2( 0.311245, 0.311245 )
+texture = ExtResource( 20 )
+offset = Vector2( -1.35364, -50.6209 )
+
+[node name="CadranNBJ" type="Control" parent="."]
+anchor_left = 0.136976
+anchor_top = 0.286995
+anchor_right = 0.136976
+anchor_bottom = 0.286995
+margin_top = -7.62939e-06
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="compteur" type="Sprite" parent="CadranNBJ"]
+position = Vector2( 1.00125, 1.66229 )
+scale = Vector2( 0.303559, 0.303559 )
+texture = ExtResource( 15 )
+
+[node name="aiguille" type="Sprite" parent="CadranNBJ"]
+position = Vector2( 1.00122, 1.66235 )
+scale = Vector2( 0.281115, 0.281115 )
+texture = ExtResource( 14 )
+
+[node name="clic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = -25.409
+
+[node name="fadeIn" parent="." instance=ExtResource( 18 )]
+visible = false
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+[connection signal="pressed" from="Button" to="PopupMenu" method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="PopupMenu2" method="_on_Button2_pressed"]
+[connection signal="pressed" from="Button5" to="PopupMenu4" method="_on_Button5_pressed"]
+[connection signal="pressed" from="Button7" to="PopupMenu3" method="_on_Button7_pressed"]
+[connection signal="pressed" from="Button6" to="AcceptDialog" method="_on_Button6_pressed"]
+[connection signal="id_pressed" from="PopupMenu" to="." method="_on_PopupMenu_id_pressed"]
+[connection signal="id_pressed" from="PopupMenu2" to="." method="_on_PopupMenu2_id_pressed"]
+[connection signal="id_pressed" from="PopupMenu3" to="." method="_on_PopupMenu3_id_pressed"]
+[connection signal="id_pressed" from="PopupMenu4" to="." method="_on_PopupMenu4_id_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_Button3_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="pressed" from="Button4" to="." method="_on_Button4_pressed"]
+[connection signal="confirmed" from="AcceptDialog" to="AcceptDialog" method="_on_AcceptDialog_confirmed"]
+[connection signal="fade_finished" from="fadeIn" to="." method="_on_fadeIn_fade_finished"]

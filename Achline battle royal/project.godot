@@ -1,0 +1,45 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "Joueur",
+"language": "GDScript",
+"path": "res://script/Joueur.gd"
+} ]
+_global_script_class_icons={
+"Joueur": ""
+}
+
+[application]
+
+config/name="Projet Achline Final"
+run/main_scene="res://scene/Menu.tscn"
+
+[autoload]
+
+GlobalLudo="*res://script/GlobalLudo.gd"
+infosGlobales="*res://script/infosGlobales.gd"
+network="*res://script/network.gd"
+gamestate="*res://script/gamestate.gd"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+
+[memory]
+
+limits/message_queue/max_size_kb=128000
+
+[rendering]
+
+environment/default_clear_color=Color( 0, 0.0470588, 0.431373, 1 )
+environment/default_environment="res://default_env.tres"
