@@ -129,7 +129,7 @@ func _modification_private_channel():
 					var bouton = Button.new()
 					bouton.set_meta("duplicate",int(joueur))
 					
-					var bouton_mute = get_node("menuchat/bouton_mute")
+					var bouton_mute = get_node("menuchat/bouton_mute").duplicate()
 					bouton_mute.icon = load("res://texture/icone_volume.png")
 					bouton_mute.set_meta("volume",int(joueur))
 					
@@ -156,7 +156,7 @@ func _on_ButtonRetour_pressed(panel: Panel):
 	get_node("menuchat").show()
 	
 func _on_conv_pressed(panel : Panel):
-	if (panel.has_meta("duplicate") and panel.get_meta("duplicate" in network.players.keys())) or (panel.has_meta("main")):
+	if (panel.has_meta("duplicate") and panel.get_meta("duplicate") in network.players.keys()) or (panel.has_meta("main")):
 		get_node("menuchat").hide()
 		panel.show()
 	
