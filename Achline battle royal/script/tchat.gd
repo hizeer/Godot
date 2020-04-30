@@ -14,13 +14,13 @@ func _ready():
 	get_node("menuchat").hide()
 	get_node("Panel").set_meta("main",0)
 	
-	get_node("menuchat/idmsg").connect("pressed",self,"_on_conv_pressed", [panel])
+	get_node("menuchat/HBoxContainerMain/CenterContainerChat/idmsg").connect("pressed",self,"_on_conv_pressed", [panel])
 	panel.get_node("ButtonRetour").connect("pressed",self,"_on_ButtonRetour_pressed", [panel])
 	panel.get_node("Button").connect("pressed",self, "_on_button_envoyer_pressed", [0])
 	
 	network.connect("_on_players_list_modifs", self, "_modification_private_channel")
 	
-	get_node("menuchat/bouton_mute").connect("pressed",self,"_on_bouton_mute_pressed",[get_node("menuchat/bouton_mute")])
+	get_node("menuchat/HBoxContainerMain/CenterContaineMute/bouton_mute").connect("pressed",self,"_on_bouton_mute_pressed",[get_node("menuchat/HBoxContainerMain/CenterContaineMute/bouton_mute")])
 	
 sync func edit_text(text):
 	var lab = get_node("Panel/ChatMain")
@@ -82,9 +82,11 @@ func get_panel(id):
 			return node
 
 func get_bouton_volume(id):
-	for node in get_node("menuchat/VBoxContainer").get_children():
-		if node is Button and node.has_meta("volume") and node.get_meta("volume") == id:
-			return node
+	for hbox in get_node("menuchat/VBoxContainer").get_children():
+		for container in hbox:
+			for bouton in container:
+				if bouton.has_meta("volume") and bouton.get_meta("volume") == id:
+					return bouton
 	
 func _on_ButtonCroix_pressed():
 	if(!get_node("teteBox2").is_visible_in_tree()):
@@ -114,57 +116,79 @@ func _modification_private_channel():
 					elif get_node(".").get_child(i).has_meta("duplicate") and (not get_node(".").get_child(i).get_meta("duplicate") in dicoJoueur.keys()):
 						get_node(".").get_child(i).hide()
 						
-						for bouton in get_node("menuchat/VBoxContainer").get_children():
-							if (bouton.has_meta("duplicate") && bouton.get_meta("duplicate") == get_node(".").get_child(i).get_meta("duplicate")) or (bouton.has_meta("volume") && bouton.get_meta("volume") == get_node(".").get_child(i).get_meta("duplicate")) :
-								bouton.disabled = true
-								bouton.queue_free()
-								
-						get_node(".").get_child(i).queue_free()
-						tt = true
+						for hbox in get_node("menuchat/VBoxContainer").get_children():
+							for container in hbox:
+								for bouton in container:
+									if (bouton.has_meta("duplicate") && bouton.get_meta("duplicate") == get_node(".").get_child(i).get_meta("duplicate")) or (bouton.has_meta("volume") && bouton.get_meta("volume") == get_node(".").get_child(i).get_meta("duplicate")) :
+										bouton.disabled = true
+										bouton.queue_free()
+									
+							get_node(".").get_child(i).queue_free()
+							tt = true
 						
 					else:
 						i = i + 1
 					
 			if i == get_node(".").get_children().size() and int(joueur) != dicoInfo.get("net_id"):
-					var bouton = Button.new()
-					bouton.set_meta("duplicate",int(joueur))
-					bouton.rect_size.x = 350
-					bouton.rect_size.y = 31
-					bouton.margin_left = 25
-					bouton.margin_top = 5
-					bouton.margin_right = 375
-					bouton.margin_bottom = 36
-					
-					var bouton_mute = get_node("menuchat/bouton_mute").duplicate()
-					bouton_mute.icon = load("res://texture/icone_volume.png")
-					bouton_mute.set_meta("volume",int(joueur))
-					
-					var Joueur = dicoJoueur.get(joueur)
-					bouton.set_text(Joueur.name)
-		
-					var panel  = load("res://scene/Panel duplicate.tscn").instance()
-					panel.set_meta("duplicate",int(joueur))
-					
-					bouton_mute.rect_position.x = 391
-					bouton_mute.rect_position.y = panel.rect_position.y - 5
-					bouton_mute.rect_size.x = 47
-					bouton_mute.rect_size.y = 41
-					bouton.margin_left = 391
-					bouton.margin_top = 0
-					bouton.margin_right = 438
-					bouton.margin_bottom = 41
-							
-					var boutonenvoyer = panel.get_node("Button")
-					var boutonretour = panel.get_node("ButtonRetour")
-								
-					bouton.connect("pressed", self, "_on_conv_pressed", [panel])
-					boutonretour.connect("pressed",self,"_on_ButtonRetour_pressed",[panel])
-					boutonenvoyer.connect("pressed",self, "_on_button_envoyer_pressed", [Joueur.net_id])
-					bouton_mute.connect("pressed", self, "_on_bouton_mute_pressed",[bouton_mute])
+				var Joueur = dicoJoueur.get(joueur)
 				
-					get_node(".").add_child(panel)
-					get_node("menuchat/VBoxContainer").add_child(bouton)
-					get_node("menuchat/VBoxContainer").add_child(bouton_mute)
+				var hbox = HBoxContainer.new()
+				hbox.rect_size.x = 436
+				hbox.rect_size.y = 41
+				hbox.rect_min_size.x = 436
+				hbox.rect_min_size.y = 41
+				hbox.rect_position.x = 9
+							
+				var containerbouton = CenterContainer.new()
+				containerbouton.rect_size.x = 375
+				containerbouton.rect_size.y = 41
+				containerbouton.rect_min_size.x = 375
+				containerbouton.rect_min_size.y = 41
+							
+				var containermute = CenterContainer.new()
+				containermute.rect_size.x = 47
+				containermute.rect_size.y = 41
+				containermute.rect_min_size.x = 47
+				containermute.rect_min_size.y = 41
+				containermute.rect_position.x = 380
+							
+				var bouton = Button.new()
+				bouton.set_meta("duplicate",int(joueur))			
+				bouton.set_text(Joueur.name)
+				bouton.rect_size.x = 375
+				bouton.rect_size.y = 41
+				bouton.rect_min_size.x = 375
+				bouton.rect_min_size.y = 41
+				
+				var panel  = load("res://scene/Panel duplicate.tscn").instance()
+				panel.set_meta("duplicate",int(joueur))
+							
+				var bouton_mute = Button.new()
+				bouton_mute.icon = load("res://texture/icone_volume.png")
+				bouton_mute.set_meta("volume",int(joueur))
+				bouton_mute.rect_size.x = 47
+				bouton_mute.rect_size.y = 41
+				bouton_mute.rect_min_size.x = 47
+				bouton_mute.rect_min_size.y = 41
+				bouton_mute.rect_position.x = 380
+							
+				var boutonenvoyer = panel.get_node("Button")
+				var boutonretour = panel.get_node("ButtonRetour")
+										
+				bouton.connect("pressed", self, "_on_conv_pressed", [panel])
+				boutonretour.connect("pressed",self,"_on_ButtonRetour_pressed",[panel])
+				boutonenvoyer.connect("pressed",self, "_on_button_envoyer_pressed", [Joueur.net_id])
+				bouton_mute.connect("pressed", self, "_on_bouton_mute_pressed",[bouton_mute])
+						
+				get_node(".").add_child(panel)
+							
+				containerbouton.add_child(bouton)
+				containermute.add_child(bouton_mute)
+							
+				hbox.add_child(containerbouton)
+				hbox.add_child(containermute)
+						
+				get_node("menuchat/VBoxContainer").add_child(hbox)
 
 func _on_ButtonRetour_pressed(panel: Panel):
 	panel.hide()
