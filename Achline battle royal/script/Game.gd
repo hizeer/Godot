@@ -311,13 +311,13 @@ func _input(ev):
 		elif !option_toggle:
 			$UI/opt.show()
 			option_in_game.show()
-			for c in get_node("UI/CanvasLayer").get_children():
-				if c != get_node("UI/CanvasLayer/son_message"):
+			for c in get_node("/root/Game/CanvasLayer").get_children():
+				if c != get_node("/root/Game/CanvasLayer/son_message"):
 					c.hide()
 		else:
 			$UI/opt.hide()
 			option_in_game.hide()
-			get_node("UI/CanvasLayer/teteBox2").show()
+			get_node("/root/Game/CanvasLayer/teteBox2").show()
 		
 		option_toggle = !option_toggle
 
