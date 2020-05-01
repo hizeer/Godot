@@ -197,7 +197,7 @@ __meta__ = {
 stream = ExtResource( 3 )
 autoplay = true
 
-[node name="CanvasLayer" parent="UI" instance=ExtResource( 10 )]
+[node name="CanvasLayer" parent="." instance=ExtResource( 10 )]
 [connection signal="pressed" from="UI/toGame" to="UI/toGame" method="_on_toGame_pressed"]
 [connection signal="pressed" from="UI/EndTurn" to="UI/EndTurn" method="_on_Button_pressed"]
 [connection signal="visibility_changed" from="UI/Temps restant" to="UI/Temps restant" method="_on_Temps_restant_visibility_changed"]

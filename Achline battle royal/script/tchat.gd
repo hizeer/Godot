@@ -29,7 +29,7 @@ sync func edit_text(text):
 	if !get_node("Panel").is_visible_in_tree():
 		notifications += 1
 		get_node("teteBox2/notification").text=str(notifications)
-		if get_node("menuchat/bouton_mute").icon == load("res://texture/icone_volume.png"):
+		if get_node("menuchat/HBoxContainerMain/CenterContaineMute/bouton_mute").icon == load("res://texture/icone_volume.png"):
 			get_node("son_message").play()
 	else:
 		notifications = 0
@@ -58,7 +58,7 @@ func send_text(id):
 	
 	if (!edit.get_text().empty()):
 		var msg = time+"/ " + gamestate.player_infos.name +" : " + edit.get_text() + "\n"
-		if panel.get_meta("main") == id:
+		if panel.has_meta("main") && panel.get_meta("main") == id:
 			rpc("edit_text", msg)
 			
 		else:
@@ -83,8 +83,8 @@ func get_panel(id):
 
 func get_bouton_volume(id):
 	for hbox in get_node("menuchat/VBoxContainer").get_children():
-		for container in hbox:
-			for bouton in container:
+		for container in hbox.get_children():
+			for bouton in container.get_children():
 				if bouton.has_meta("volume") and bouton.get_meta("volume") == id:
 					return bouton
 	
@@ -117,11 +117,12 @@ func _modification_private_channel():
 						get_node(".").get_child(i).hide()
 						
 						for hbox in get_node("menuchat/VBoxContainer").get_children():
-							for container in hbox:
-								for bouton in container:
+							for container in hbox.get_children():
+								for bouton in container.get_children():
 									if (bouton.has_meta("duplicate") && bouton.get_meta("duplicate") == get_node(".").get_child(i).get_meta("duplicate")) or (bouton.has_meta("volume") && bouton.get_meta("volume") == get_node(".").get_child(i).get_meta("duplicate")) :
 										bouton.disabled = true
 										bouton.queue_free()
+										container.queue_free()
 									
 							get_node(".").get_child(i).queue_free()
 							tt = true
@@ -160,7 +161,7 @@ func _modification_private_channel():
 				bouton.rect_min_size.x = 375
 				bouton.rect_min_size.y = 41
 				
-				var panel  = load("res://scene/Panel duplicate.tscn").instance()
+				var panel  = load("res://scene/Panel_duplicate.tscn").instance()
 				panel.set_meta("duplicate",int(joueur))
 							
 				var bouton_mute = Button.new()

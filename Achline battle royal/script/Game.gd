@@ -298,7 +298,8 @@ func _ready():
 	get_node("UI/opt").add_child(option_in_game)
 	option_in_game.hide()
 	$UI/opt.hide()
-
+	
+	get_node("CanvasLayer")._modification_private_channel()
 
 
 func _input(ev):

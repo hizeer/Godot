@@ -104,7 +104,6 @@ func listejoueurmaj():
 		
 sync func lancer():
 	get_tree().change_scene("res://scene/placement.tscn")
-	
 
 sync func donner_data(taille, ecart):
 	GlobalLudo.largeur = taille

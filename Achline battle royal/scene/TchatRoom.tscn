@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://script/tchat.gd" type="Script" id=1]
-[ext_resource path="res://scene/Panel duplicate.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/Panel_duplicate.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sound/message.wav" type="AudioStream" id=3]
 [ext_resource path="res://texture/icone_volume.png" type="Texture" id=4]
 
@@ -120,15 +120,16 @@ __meta__ = {
 }
 
 [node name="CenterContaineMute" type="CenterContainer" parent="menuchat/HBoxContainerMain"]
-margin_left = 380.0
-margin_right = 427.0
+margin_left = 376.0
+margin_right = 436.0
 margin_bottom = 41.0
 rect_min_size = Vector2( 47, 41 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="bouton_mute" type="Button" parent="menuchat/HBoxContainerMain/CenterContaineMute"]
-margin_right = 47.0
+margin_left = 6.0
+margin_right = 53.0
 margin_bottom = 41.0
 rect_min_size = Vector2( 47, 41 )
 icon = ExtResource( 4 )
