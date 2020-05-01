@@ -7,6 +7,7 @@ var _joueurActuel = null # passe une boucle dans joueur qui prend le joueur suiv
 signal joueurChanged(JoueurAct)
 var nbrTour = 0
 var nbrJoueurs = 0
+var nbrJoueursMax = 0
 var maxShots = 5
 var maxMoves = 5
 var wait = 0
@@ -72,6 +73,7 @@ sync func SendBoat():
 		EnvoyezBoat(GlobalLudo.You.Boats[0])
 	else:
 		GlobalLudo.Game.rpc_id(1,"IncreaseWait")
+	nbrJoueursMax = nbrJoueurs
 	
 	
 
@@ -241,7 +243,7 @@ sync func RemovePlayer(j):
 	
 func JoueurSuivant(id): #seul l'hote devra l'utiliser
 	var joueur = IdToUser(id)
-	if joueur.ordre >= nbrJoueurs-1:
+	if joueur.ordre >= nbrJoueursMax-1:
 		if _joueurs[0].lost:
 			JoueurSuivant(_joueurs[1].id)
 		else:
@@ -309,13 +311,13 @@ func _input(ev):
 		elif !option_toggle:
 			$UI/opt.show()
 			option_in_game.show()
-			for c in get_node("/root/Game/CanvasLayer").get_children():
-				if c != get_node("/root/Game/CanvasLayer/son_message"):
+			for c in get_node("UI/CanvasLayer").get_children():
+				if c != get_node("UI/CanvasLayer/son_message"):
 					c.hide()
 		else:
 			$UI/opt.hide()
 			option_in_game.hide()
-			get_node("/root/Game/CanvasLayer/teteBox2").show()
+			get_node("UI/CanvasLayer/teteBox2").show()
 		
 		option_toggle = !option_toggle
 
